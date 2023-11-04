@@ -1,11 +1,11 @@
 
 import numpy as np
 
-from game_utils import initialize_game_state
-from game_utils import pretty_print_board
-from game_utils import string_to_board
-from game_utils import connected_four
-from game_utils import check_end_state
+from ..game_utils import initialize_game_state
+from ..game_utils import pretty_print_board
+from ..game_utils import string_to_board
+from ..game_utils import connected_four
+from ..game_utils import check_end_state
 
 def test_board_shape():
     assert initialize_game_state().shape ==  (6,7)
