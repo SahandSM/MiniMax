@@ -31,7 +31,7 @@ def initialize_game_state() -> np.ndarray:
     board = np.zeros(BOARD_SHAPE,BoardPiece)
     return board
 
-def pretty_print_board(board: np.ndarray, display) -> str:
+def pretty_print_board(board: np.ndarray) -> str:
     """
     Should return `board` converted to a human readable string representation,
     to be used when playing or printing diagnostics to the console (stdout). The piece in
@@ -48,13 +48,14 @@ def pretty_print_board(board: np.ndarray, display) -> str:
     |0 1 2 3 4 5 6 |
     """
 
-    board_print = np.full((board.shape),NO_PLAYER_PRINT)
-    board_print[board==1] = PLAYER1_PRINT
-    board_print[board==2] = PLAYER2_PRINT
-    board_print_reversed = board_print[::-1]
+    board_p = np.full((board.shape),NO_PLAYER_PRINT)
+    board_p[board==1] = PLAYER1_PRINT
+    board_p[board==2] = PLAYER2_PRINT
+    board_p = board_p[::-1]
+    # board_p = '\n'.join([f"|{''.join(row)}|" for row in board_p])
+    board_p = '\n'.join(['|'+''.join(row)+'|' for row in board_p])
 
-    for row in board_print_reversed:
-        display(f"|{''.join(row)}|")
+    return board_p
 
 def string_to_board(pp_board: str) -> np.ndarray:
     """
@@ -79,12 +80,12 @@ def apply_player_action(board: np.ndarray, action: PlayerAction, player: BoardPi
     back or copied beforehand).
     """
 
-    i = np.count_nonzero(board[:,action-1])
+    i = np.count_nonzero(board[:,action])
     if i == BOARD_ROWS:
         raise ValueError('column is full')
     else:
-        board_copy = board.copy()
-        board[i,action-1] = player
+        board[i,action] = player
+        return board
 
 def connected_four(board: np.ndarray, player: BoardPiece) -> bool:
     """
@@ -117,17 +118,27 @@ def connected_four(board: np.ndarray, player: BoardPiece) -> bool:
 
     return False
 
-def check_end_state(board: np.ndarray, player: BoardPiece,display) -> GameState:
+def check_end_state(board: np.ndarray, player: BoardPiece) -> GameState:
     """
     Returns the current game state for the current `player`, i.e. has their last
     action won (GameState.IS_WIN) or drawn (GameState.IS_DRAW) the game,
     or is play still on-going (GameState.STILL_PLAYING)?
     """
     if connected_four(board,player):
-        display(GameState.IS_WIN.name)
+        return(GameState.IS_WIN)
     elif np.count_nonzero(board) == BOARD_ROWS * BOARD_COLS:
-        display(GameState.IS_DRAW.name)   
-        # print(GameState.IS_DRAW.name) 
+        return(GameState.IS_DRAW)   
     else:
-        display(GameState.STILL_PLAYING.name)
+        return(GameState.STILL_PLAYING)
 
+# Week 2
+from typing import Callable, Optional
+
+class SavedState:
+    pass
+
+
+GenMove = Callable[
+    [np.ndarray, BoardPiece, Optional[SavedState]],  # Arguments for the generate_move function
+    tuple[PlayerAction, Optional[SavedState]]  # Return type of the generate_move function
+]
