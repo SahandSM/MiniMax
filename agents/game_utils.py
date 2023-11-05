@@ -81,11 +81,8 @@ def apply_player_action(board: np.ndarray, action: PlayerAction, player: BoardPi
     """
 
     i = np.count_nonzero(board[:,action])
-    if i == BOARD_ROWS:
-        raise ValueError('column is full')
-    else:
-        board[i,action] = player
-        return board
+    board[i,action] = player
+    return board
 
 def connected_four(board: np.ndarray, player: BoardPiece) -> bool:
     """
