@@ -49,8 +49,8 @@ def pretty_print_board(board: np.ndarray) -> str:
     """
 
     board_p = np.full((board.shape),NO_PLAYER_PRINT)
-    board_p[board==1] = PLAYER1_PRINT
-    board_p[board==2] = PLAYER2_PRINT
+    board_p[board==PLAYER1] = PLAYER1_PRINT
+    board_p[board==PLAYER2] = PLAYER2_PRINT
     board_p = board_p[::-1]
     board_p = ' - - - - - - - \n' + '\n'.join(['|'+' '.join(row)+'|' for row in board_p]) + '\n - - - - - - -'+'\n 0 1 2 3 4 5 6'
 
