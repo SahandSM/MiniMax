@@ -6,3 +6,4 @@ agents/agent_random/__pycache__/__init__.cpython-311.pyc
 agents/agent_random/__pycache__/random.cpython-311.pyc
 tests/__pycache__/__init__.cpython-311.pyc
 tests/__pycache__/test_game_utils.cpython-311-pytest-7.4.3.pyc
+.vscode/settings.json
