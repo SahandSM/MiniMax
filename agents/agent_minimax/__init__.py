@@ -1,0 +1,1 @@
+from .random import generate_move_minimax as generate_move
