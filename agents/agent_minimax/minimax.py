@@ -8,3 +8,4 @@ from typing import Optional, Callable
 def generate_move_minimax(board: np.ndarray, 
                          player: BoardPiece, 
                          saved_state: Optional[SavedState]) -> tuple[PlayerAction, Optional[SavedState]]:
+    pass
