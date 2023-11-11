@@ -1,7 +1,8 @@
 from typing import Callable
 from agents.game_utils import GenMove
 from agents.agent_human_user import user_move
-from agents.agent_random import generate_move
+from agents.agent_random import random_move
+from agents.agent_minimax import minimax_move
 
 
 def human_vs_agent(
