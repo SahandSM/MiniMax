@@ -3,14 +3,16 @@ import numpy as np
 
 from agents.game_utils import initialize_game_state, pretty_print_board ,string_to_board, connected_four, check_end_state
 
+
+
 def test_board_shape():
     assert initialize_game_state().shape ==  (6,7)
 
-# def test_board_dtype():
-#     assert initialize_game_state().dtype ==  np.int8
+def test_board_dtype():
+    assert initialize_game_state().dtype ==  np.int8
 
-# def test_board_initials():
-#     assert initialize_game_state().all() == 0
+def test_board_initials():
+    assert initialize_game_state().all() == 0
 
 
 # # def test_board_display():
