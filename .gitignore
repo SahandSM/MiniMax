@@ -1,12 +1,5 @@
-agents/__pycache__/__init__.cpython-311.pyc
-agents/__pycache__/game_utils.cpython-311.pyc
-agents/agent_human_user/__pycache__/__init__.cpython-311.pyc
-agents/agent_human_user/__pycache__/human_user.cpython-311.pyc
-agents/agent_random/__pycache__/__init__.cpython-311.pyc
-agents/agent_random/__pycache__/random.cpython-311.pyc
-tests/__pycache__/__init__.cpython-311.pyc
-tests/__pycache__/test_game_utils.cpython-311-pytest-7.4.3.pyc
+
+
+*.pyc
 .vscode/settings.json
-agents/agent_minimax/__pycache__/__init__.cpython-311.pyc
-agents/agent_minimax/__pycache__/minimax.cpython-311.pyc
 Practice_Jup.ipynb
