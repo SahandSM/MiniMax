@@ -28,7 +28,10 @@ def test_board_display():
     #         and displayed_board[2] == boardpirnttest_row2
     #         )
     assert printed_board == '''
-    | O O O |
-    |OXOXOXO|
-    |X X X X|
+ - - - - - - - 
+|  O   O   O  |
+|O X O X O X O|
+|X   X   X   X|
+ - - - - - - -
+ 0 1 2 3 4 5 6
     '''
