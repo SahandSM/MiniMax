@@ -4,9 +4,20 @@ import numpy as np
 from agents.game_utils import *
 
 def test_action():
-       board = np.array([[1,1,1,1,1,1,1],[0,0,0,0,0,0,1],[0,0,0,0,0,0,1],[0,0,0,0,0,0,1],[0,0,0,0,0,0,1],[0,0,0,0,0,0,0]])
-       board_original = apply_player_action(board,7,PLAYER1)
-       assert np.all(board - board_original == np.array([[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,1]]))
+    board = np.array([[1,1,1,1,1,1,1],
+                        [0,0,0,0,0,0,1],
+                        [0,0,0,0,0,0,1],
+                        [0,0,0,0,0,0,1],
+                        [0,0,0,0,0,0,1],
+                        [0,0,0,0,0,0,0]])
+
+    board_action_applied = apply_player_action(board,6,PLAYER1)
+    assert np.all(board_action_applied == np.array([[1,1,1,1,1,1,1],
+                                                    [0,0,0,0,0,0,1],
+                                                    [0,0,0,0,0,0,1],
+                                                    [0,0,0,0,0,0,1],
+                                                    [0,0,0,0,0,0,1],
+                                                    [0,0,0,0,0,0,1]]))
 
 def test_connected_not():
     board = np.array([[1,1,1,0,0,0,1],[0,0,0,0,0,0,1],[0,0,0,0,0,0,1],[0,0,1,0,1,0,0],[0,1,0,0,0,1,0],[1,0,0,0,0,0,1]])
