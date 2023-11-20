@@ -63,14 +63,14 @@ def string_to_board(pp_board: str) -> np.ndarray:
     This is quite useful for debugging, when the agent crashed and you have the last
     board state as a string.
     """
-    pp_board = pp_board.split('|')[1::2]
-    pp_board =np.array([[i for i in row] for row in pp_board])
+    board_array_of_string = pp_board.split('|')[1::2]
+    board_array_of_string =np.array([[i for i in row] for row in board_array_of_string])[:,::2]
 
-    board_cnoverted = np.zeros(pp_board.shape)
-    board_cnoverted[pp_board==PLAYER1_PRINT] = PLAYER1
-    board_cnoverted[pp_board==PLAYER2_PRINT] = PLAYER2
-    board_converted_reversed = board_cnoverted[::-1]
-    return board_converted_reversed
+    board_array = np.zeros(board_array_of_string.shape)
+    board_array[board_array_of_string==PLAYER1_PRINT] = PLAYER1
+    board_array[board_array_of_string==PLAYER2_PRINT] = PLAYER2
+    board_array = board_array[::-1]
+    return board_array
 
 def apply_player_action(board: np.ndarray, action: PlayerAction, player: BoardPiece) -> np.ndarray:
     """
