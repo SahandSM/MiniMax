@@ -50,34 +50,29 @@ def test_connected_diagn():
     assert connected_four(board,1) == True
 
 def test_draw():
-    displayed_state = []
-
-    def mock_display(Gstate):  
-        displayed_state.append(Gstate)
-
     board = np.arange(1,43).reshape(6,7)
 
-    check_end_state(board,1,mock_display)
-    assert displayed_state == ['IS_DRAW']
+    CheckedState = check_end_state(board,1)
+    assert CheckedState == GameState.IS_DRAW
 
 def test_win():
-    displayed_state = []
+    board = np.array([[1,1,1,1,0,0,1],
+                      [0,0,0,0,0,0,1],
+                      [0,0,0,0,0,0,1],
+                      [0,0,1,0,1,0,0],
+                      [0,1,0,0,0,1,0],
+                      [1,0,0,0,0,0,1]])
 
-    def mock_display(Gstate):  
-        displayed_state.append(Gstate)
-
-    board = np.array([[1,1,1,1,0,0,1],[0,0,0,0,0,0,1],[0,0,0,0,0,0,1],[0,0,1,0,1,0,0],[0,1,0,0,0,1,0],[1,0,0,0,0,0,1]])
-
-    check_end_state(board,1,mock_display)
-    assert displayed_state == ['IS_WIN']
+    CheckedState = check_end_state(board,1)
+    assert CheckedState == GameState.IS_WIN
 
 def test_still_playing():
-    displayed_state = []
+    board = np.array([[1,1,1,0,0,0,1],
+                      [0,0,0,0,0,0,1],
+                      [0,0,0,0,0,0,1],
+                      [0,0,1,0,1,0,0],
+                      [0,1,0,0,0,1,0],
+                      [1,0,0,0,0,0,1]])
 
-    def mock_display(Gstate):  
-        displayed_state.append(Gstate)
-
-    board = np.array([[1,1,1,0,0,0,1],[0,0,0,0,0,0,1],[0,0,0,0,0,0,1],[0,0,1,0,1,0,0],[0,1,0,0,0,1,0],[1,0,0,0,0,0,1]])
-
-    check_end_state(board,1,mock_display)
-    assert displayed_state == ['STILL_PLAYING']
+    CheckedState = check_end_state(board,1)
+    assert CheckedState == GameState.STILL_PLAYING
