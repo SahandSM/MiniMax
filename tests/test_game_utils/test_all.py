@@ -4,12 +4,13 @@ import numpy as np
 from agents.game_utils import *
 
 def test_action():
-    board = np.array([[1,1,1,1,1,1,1],
-                        [0,0,0,0,0,0,1],
-                        [0,0,0,0,0,0,1],
-                        [0,0,0,0,0,0,1],
-                        [0,0,0,0,0,0,1],
-                        [0,0,0,0,0,0,0]])
+    board = np.array([
+                    [1,1,1,1,1,1,1],
+                    [0,0,0,0,0,0,1],
+                    [0,0,0,0,0,0,1],
+                    [0,0,0,0,0,0,1],
+                    [0,0,0,0,0,0,1],
+                    [0,0,0,0,0,0,0]])
 
     board_action_applied = apply_player_action(board,6,PLAYER1)
     assert np.all(board_action_applied == np.array([[1,1,1,1,1,1,1],
