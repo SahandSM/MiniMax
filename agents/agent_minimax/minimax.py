@@ -27,18 +27,22 @@ def get_free_row(board):
     return free_row
 
 
-def iterate_states(board,depth):
+def iterate_states(board,depth,player = True):
     # where to copy?
-    # what to return?
     # assing the return or not?
-    # board_copy = np.copy(board)
+        # what to return?
     if depth == 0: # depth =0 means there has been x=depth moves carried out
         print(f'\depth 0 and board is:\n',pretty_print_board(board))
         return
 
-    for move in range(2):
-        new_board = board.copy() # copy should be done inside the loop becasue ... don't move it out
-        new_board = apply_player_action(new_board,move,2)
-        iterate_states(new_board,depth-1)
-
-
+    if player == True:
+        for move in range(2):
+            new_board = board.copy() # copy should be done inside the loop becasue ... don't move it out
+            new_board = apply_player_action(new_board,move,2)
+            iterate_states(new_board,depth-1,False)
+    else:
+        for move in range(2):
+            new_board = board.copy() # copy should be done inside the loop becasue ... don't move it out
+            new_board = apply_player_action(new_board,move,1)
+            iterate_states(new_board,depth-1,True)
+    
