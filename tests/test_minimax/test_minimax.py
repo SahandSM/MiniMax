@@ -32,12 +32,10 @@ def test_iterate_states():
     0 1 2 3 4 5 6
     '''
     board = string_to_board(board_string)
-    board_copy = board.copy()
-    iterate_states(board_copy,2)
+    # board_copy = board.copy() it is not necessary if you are suare you are making a copy in the agent before applying actions there
+    iterate_states(board,2)
     print('\nOriginal\n'
         ,pretty_print_board(board))
-    print('Copy\n'
-        ,pretty_print_board(board_copy))
     return
 
 
