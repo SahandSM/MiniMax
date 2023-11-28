@@ -2,6 +2,7 @@
 import numpy as np
 
 from agents.game_utils import *
+from agents.agent_minimax.heuristic import *
 from typing import Optional, Callable
 
 
@@ -26,10 +27,18 @@ def get_free_row(board):
     return free_row
 
 
-def minimiax_move(board,depth):
-    board_copy = board.copy()
+def iterate_states(board,depth):
+    # where to copy?
+    # what to return?
+    # assing the return or not?
+    # board_copy = np.copy(board)
+    if depth == 0: # depth =0 means there has been x=depth moves carried out
+        print(f'\depth 0 and board is:\n',pretty_print_board(board))
+        return
 
-    if depth>0:
-        board_copy = apply_player_action(board_copy,6,2)
-        minimiax_move(board_copy,depth-1)
-    return board_copy
+    for move in range(2):
+        new_board = board.copy()
+        new_board = apply_player_action(new_board,move,2)
+        depth0(new_board,depth-1)
+
+
