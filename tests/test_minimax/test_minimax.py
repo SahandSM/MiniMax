@@ -33,7 +33,7 @@ def test_iterate_states():
     '''
     board = string_to_board(board_string)
     board_copy = board.copy()
-    depth0(board_copy,2)
+    iterate_states(board_copy,2)
     print('\nOriginal\n'
         ,pretty_print_board(board))
     print('Copy\n'
