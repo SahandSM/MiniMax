@@ -25,34 +25,14 @@ def get_free_row(board):
     # remember to check for legal moves first.
     free_row = [np.count_nonzero(board[:,i]) for i in range(7)]
     return free_row
-
-
-def iterate_states_0(board,depth,player = True):
-    # where to copy?
-    # assing the return or not?
-        # what to return?
-    if depth == 0: # depth =0 means there has been x=depth moves carried out
-        print(f'\depth 0 and board is:\n',pretty_print_board(board))
-        return
-
-    if player == True:
-        for move in range(2):
-            new_board = board.copy() # copy should be done inside the loop becasue ... don't move it out
-            new_board = apply_player_action(new_board,move,2)
-            iterate_states(new_board,depth-1,False)
-    else:
-        for move in range(2):
-            new_board = board.copy() # copy should be done inside the loop becasue ... don't move it out
-            new_board = apply_player_action(new_board,move,1)
-            iterate_states(new_board,depth-1,True)
     
 def iterate_states(board,depth,player = True, i=np.array([0])):
-    # where to copy?
-    # assing the return or not?
-        # what to return?
+
     if depth == 0: # depth =0 means there has been x=depth moves carried out
-        print(f'\ndepth 0 reached for {i}:\n',pretty_print_board(board))
         board_score = evaluate(i)
+        print(f'\ndepth 0 reached for {i}:',
+              f'\nboard score is: {board_score}\n',
+              pretty_print_board(board))
         i += 1
         return board_score
 
@@ -72,6 +52,20 @@ def iterate_states(board,depth,player = True, i=np.array([0])):
             board_score = iterate_states(new_board,depth-1,True,i)
             min_score = min(min_score,board_score)
         return min_score
+    
+def get_best_move(board):
+    best_move = None
+    best_eval = -100
+
+    for move in range(2):
+        new_board = board.copy()
+        new_board = apply_player_action(new_board, move, 2)
+        eval = iterate_states(new_board, 1, False)  # Adjust depth as needed
+        if eval > best_eval:
+            best_eval = eval
+            best_move = move
+
+    return best_move
 
 def evaluate(i):
     if i == [0]:
