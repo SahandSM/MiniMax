@@ -39,6 +39,6 @@ def iterate_states(board,depth):
     for move in range(2):
         new_board = board.copy()
         new_board = apply_player_action(new_board,move,2)
-        depth0(new_board,depth-1)
+        iterate_states(new_board,depth-1)
 
 
