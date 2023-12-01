@@ -3,14 +3,29 @@ import numpy as np
 from agents.game_utils import *
 from typing import Optional, Callable
 
-def extract_windows(array,pivot_position):
+def extract_windows(array: list,pivot_position: int) -> list:
+    """
+    Extracts a sliding window of size 4 from the given list 'array' centered around the 'pivot_position'.
+
+    Parameters:
+    - array (list): The input list from which windows are to be extracted.
+    - pivot_position (int): The index around which the sliding window is centered.
+
+    Returns:
+    list: A list of sublists, each representing a sliding window of size 4 around the 'pivot_position'.
+    
+    Example:
+    >>> array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    >>> pivot_position = 4
+    >>> extract_windows(array, pivot_position)
+    [[2, 3, 4, 5], [3, 4, 5, 6], [4, 5, 6, 7]]
+    """
     start = max(0,pivot_position-3)
     last_window = len(array)-3
     end = min(pivot_position+1,last_window)
     windows = []
     for w in range(start,end):
         window = list(array[w:w+4])
-        # print(window)
         windows.append(window)
     return windows
 
