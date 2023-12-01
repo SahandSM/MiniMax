@@ -32,5 +32,13 @@ def test_heuristic_2():
     pivot = (2,3)
     player = 2
 
-    evaluate_at_pivot(board,pivot,player)
-    return
+    score = evaluate_at_pivot(board,pivot,player)
+    print(score)
+
+def test_extract_windows():
+    array = [2,2,0,1,1,1,0]
+    pivot = 5
+    windows = extract_windows(array,pivot)
+    print(windows)
+
+    
