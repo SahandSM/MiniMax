@@ -12,20 +12,24 @@ def generate_move_minimax(board: np.ndarray,
     # return action, saved_state
     pass
 
-def get_valid_moves(board: np.ndarray):
-    is_open = board[-1, :] == 0
-    valid_moves = np.arange(board.shape[1])[is_open]
-    return valid_moves
+def get_best_move(board,depth):
+    best_move = None
+    max_score = float('-inf')
+    alpha = float('-inf')
+    beta = float('inf')
+    for move in range(2):
+        new_board = board.copy()
+        new_board = apply_player_action(new_board, move, 2)
+        board_score = iterate_states(new_board, depth-1,alpha,beta, player= False)  # Adjust depth as needed
+        if board_score > max_score:
+            max_score = board_score
+            best_move = move
+        alpha = max(alpha,board_score)
+        if beta <= alpha:
+            break
 
-def is_open_row(board):
-    is_open = board[-1, :] == 0
-    return is_open
+    return best_move , max_score
 
-def get_free_row(board):
-    # remember to check for legal moves first.
-    free_row = [np.count_nonzero(board[:,i]) for i in range(7)]
-    return free_row
-    
 def iterate_states(board,depth,alpha, beta, player = True, i=np.array([0])):
 
     if depth == 0: # depth =0 means there has been x=depth moves carried out
@@ -59,23 +63,6 @@ def iterate_states(board,depth,alpha, beta, player = True, i=np.array([0])):
                     break
         return min_score
     
-def get_best_move(board,depth):
-    best_move = None
-    max_score = float('-inf')
-    alpha = float('-inf')
-    beta = float('inf')
-    for move in range(2):
-        new_board = board.copy()
-        new_board = apply_player_action(new_board, move, 2)
-        board_score = iterate_states(new_board, depth-1,alpha,beta, player= False)  # Adjust depth as needed
-        if board_score > max_score:
-            max_score = board_score
-            best_move = move
-        alpha = max(alpha,board_score)
-        if beta <= alpha:
-            break
-
-    return best_move , max_score
     
 def evaluate(i):
     score = [-1,3,5,-6,-4]
@@ -96,4 +83,16 @@ def evaluate(i):
     if i == [7]:
         return score[i[0]]
 
+def get_valid_moves(board: np.ndarray):
+    is_open = board[-1, :] == 0
+    valid_moves = np.arange(board.shape[1])[is_open]
+    return valid_moves
 
+def is_open_row(board):
+    is_open = board[-1, :] == 0
+    return is_open
+
+def get_free_row(board):
+    # remember to check for legal moves first.
+    free_row = [np.count_nonzero(board[:,i]) for i in range(7)]
+    return free_row
