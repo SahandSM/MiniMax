@@ -25,7 +25,7 @@ def get_best_move(board):
     for move in valid_moves:
         new_board = board.copy()
         new_board = apply_player_action(new_board, move, 2)
-        board_score = iterate_states(new_board, depth-1,alpha,beta, player= False)  # Adjust depth as needed
+        board_score = iterate_states(new_board, depth-1,alpha,beta, maximizing_player= False)  # Adjust depth as needed
         if board_score > max_score:
             max_score = board_score
             best_move = move
@@ -34,7 +34,7 @@ def get_best_move(board):
             break
     return best_move , max_score
 
-def iterate_states(board,depth,alpha, beta, player = True, i=np.array([0])):
+def iterate_states(board,depth,alpha, beta, maximizing_player = True, i=np.array([0])):
     valid_moves = get_valid_moves(board)
 
     if depth == 0 or len(valid_moves) == 0: # depth =0 means there has been x=depth moves carried out
@@ -46,7 +46,7 @@ def iterate_states(board,depth,alpha, beta, player = True, i=np.array([0])):
         return board_score
 
 
-    if player == True:
+    if maximizing_player == True:
         max_score = float('-inf')
         for move in valid_moves:
             new_board = board.copy() # copy should be done inside the loop becasue ... don't move it out
