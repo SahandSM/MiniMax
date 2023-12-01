@@ -73,12 +73,12 @@ def test_iterate_states():
     print('score is :',score)
     return
 
-def test_get_best_move():
+def test_generate_move_minimax():
     board_string = ''' 
     - - - - - - - 
     |    O O O O O|
-    |O O O O O O O|
-    |O O O O O O O|
+    |    O O O O O|
+    |    O O O O O|
     |O O O O O O O|
     |O O O O O O O|
     |O O O O O O O|
@@ -87,7 +87,7 @@ def test_get_best_move():
     '''
     board = string_to_board(board_string)
     # board_copy = board.copy() it is not necessary if you are suare you are making a copy in the agent before applying actions there
-    best_move, best_eval = get_best_move(board)
+    best_move, best_eval = generate_move_minimax(board,player = PLAYER2, saved_state=None)
     print('best columns to take is:',best_move,
           f'best board score is:', best_eval)
     return

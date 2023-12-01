@@ -10,10 +10,6 @@ from typing import Optional, Callable
 def generate_move_minimax(board: np.ndarray, 
                          player: BoardPiece, 
                          saved_state: Optional[SavedState]) -> tuple[PlayerAction, Optional[SavedState]]:
-    # return action, saved_state
-    pass
-
-def get_best_move(board):
     depth = 3
     best_move = None
     max_score = float('-inf')
@@ -24,8 +20,8 @@ def get_best_move(board):
 
     for move in valid_moves:
         new_board = board.copy()
-        new_board = apply_player_action(new_board, move, 2)
-        board_score = iterate_states(new_board, depth-1,alpha,beta, maximizing_player= False)  # Adjust depth as needed
+        new_board = apply_player_action(new_board, move, player)
+        board_score = iterate_states(new_board,player, depth-1,alpha,beta, maximizing_player= False)  # Adjust depth as needed
         if board_score > max_score:
             max_score = board_score
             best_move = move
@@ -34,7 +30,9 @@ def get_best_move(board):
             break
     return best_move , max_score
 
-def iterate_states(board,depth,alpha, beta, maximizing_player = True, i=np.array([0])):
+def iterate_states(board,player, depth,alpha, beta, maximizing_player = True, i=np.array([0])):
+    opponent = PLAYER2 if player == PLAYER1 else PLAYER1
+    
     valid_moves = get_valid_moves(board)
 
     if depth == 0 or len(valid_moves) == 0: # depth =0 means there has been x=depth moves carried out
@@ -50,8 +48,8 @@ def iterate_states(board,depth,alpha, beta, maximizing_player = True, i=np.array
         max_score = float('-inf')
         for move in valid_moves:
             new_board = board.copy() # copy should be done inside the loop becasue ... don't move it out
-            new_board = apply_player_action(new_board,move,2)
-            board_score = iterate_states(new_board,depth-1,alpha,beta,False,i)
+            new_board = apply_player_action(new_board,move,player)
+            board_score = iterate_states(new_board,player, depth-1,alpha,beta,False,i)
             max_score = max(max_score,board_score)
             alpha = max(alpha,board_score)
             if beta <= alpha:
@@ -61,8 +59,8 @@ def iterate_states(board,depth,alpha, beta, maximizing_player = True, i=np.array
         min_score = float('inf')
         for move in valid_moves:
             new_board = board.copy() # copy should be done inside the loop becasue ... don't move it out
-            new_board = apply_player_action(new_board,move,1)
-            board_score = iterate_states(new_board,depth-1,alpha,beta,True,i)
+            new_board = apply_player_action(new_board,move,opponent)
+            board_score = iterate_states(new_board, player, depth-1,alpha,beta,True,i)
             min_score = min(min_score,board_score)
             beta = min(beta,board_score)
             if beta <= alpha:
