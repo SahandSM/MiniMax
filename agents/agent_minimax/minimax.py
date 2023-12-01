@@ -65,7 +65,7 @@ def get_best_move(board,depth):
             best_eval = eval
             best_move = move
 
-    return best_move
+    return best_move , best_eval
     
 def evaluate(i):
     if i == [0]:
