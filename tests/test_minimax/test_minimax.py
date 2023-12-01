@@ -76,12 +76,12 @@ def test_iterate_states():
 def test_get_best_move():
     board_string = ''' 
     - - - - - - - 
-    |             |
-    |             |
-    |             |
-    |             |
-    |             |
-    |             |
+    |    O O O O O|
+    |O O O O O O O|
+    |O O O O O O O|
+    |O O O O O O O|
+    |O O O O O O O|
+    |O O O O O O O|
     - - - - - - -
     0 1 2 3 4 5 6
     '''
