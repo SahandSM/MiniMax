@@ -53,27 +53,36 @@ def iterate_states(board,depth,player = True, i=np.array([0])):
             min_score = min(min_score,board_score)
         return min_score
     
-def get_best_move(board):
+def get_best_move(board,depth):
     best_move = None
     best_eval = -100
 
     for move in range(2):
         new_board = board.copy()
         new_board = apply_player_action(new_board, move, 2)
-        eval = iterate_states(new_board, 1, False)  # Adjust depth as needed
+        eval = iterate_states(new_board, depth-1, False)  # Adjust depth as needed
         if eval > best_eval:
             best_eval = eval
             best_move = move
 
     return best_move
-
+    
 def evaluate(i):
     if i == [0]:
-        return 1
-    if i == [1]:
-        return 2
-    if i == [2]:
         return 0
+    if i == [1]:
+        return 1
+    if i == [2]:
+        return 2
     if i == [3]:
+        return 3
+    if i == [4]:
+        return 0
+    if i == [5]:
         return -1
+    if i == [6]:
+        return -1
+    if i == [7]:
+        return -2
+
 

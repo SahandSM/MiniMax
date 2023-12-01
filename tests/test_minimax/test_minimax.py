@@ -53,7 +53,7 @@ def test_get_best_move():
     '''
     board = string_to_board(board_string)
     # board_copy = board.copy() it is not necessary if you are suare you are making a copy in the agent before applying actions there
-    best_move = get_best_move(board)
+    best_move = get_best_move(board, depth=3)
     print('best columns to take is:',best_move)
     return
 
