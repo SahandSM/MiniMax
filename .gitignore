@@ -1,5 +1,5 @@
 
 
-*.pyc
+*.pyc*
 .vscode/settings.json
 Practice_Jup.ipynb
