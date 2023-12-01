@@ -67,7 +67,7 @@ def test_iterate_states():
     '''
     board = string_to_board(board_string)
     # board_copy = board.copy() it is not necessary if you are suare you are making a copy in the agent before applying actions there
-    score = iterate_states(board,2)
+    score = iterate_states(board)
     print('\nOriginal\n'
         ,pretty_print_board(board))
     print('score is :',score)
@@ -87,7 +87,7 @@ def test_get_best_move():
     '''
     board = string_to_board(board_string)
     # board_copy = board.copy() it is not necessary if you are suare you are making a copy in the agent before applying actions there
-    best_move, best_eval = get_best_move(board, depth=3)
+    best_move, best_eval = get_best_move(board)
     print('best columns to take is:',best_move,
           f'best board score is:', best_eval)
     return

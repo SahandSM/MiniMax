@@ -6,13 +6,15 @@ from agents.agent_minimax.heuristic import *
 from typing import Optional, Callable
 
 
+
 def generate_move_minimax(board: np.ndarray, 
                          player: BoardPiece, 
                          saved_state: Optional[SavedState]) -> tuple[PlayerAction, Optional[SavedState]]:
     # return action, saved_state
     pass
 
-def get_best_move(board,depth):
+def get_best_move(board):
+    depth = 3
     best_move = None
     max_score = float('-inf')
     alpha = float('-inf')
