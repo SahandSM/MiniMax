@@ -30,6 +30,8 @@ def test_heuristic_2():
     print(board)
 
     pivot = (2,3)
+    print(pivot)
+
     player = 2
 
     score = evaluate_at_pivot(board,pivot,player)
@@ -41,4 +43,18 @@ def test_extract_windows():
     windows = extract_windows(array,pivot)
     print(windows)
 
-    
+def test_pivot_row():
+    board = np.arange(1,43).reshape(6,7)
+    print('\n',board)
+
+    pivot = (2,3)
+    print(pivot)
+
+    print(board[pivot])
+
+    array_window, position = pivot_row(board,pivot)
+    print(array_window)
+    print(position)
+
+
+
