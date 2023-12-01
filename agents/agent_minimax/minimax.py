@@ -27,7 +27,6 @@ def get_best_move(board,depth):
         alpha = max(alpha,board_score)
         if beta <= alpha:
             break
-
     return best_move , max_score
 
 def iterate_states(board,depth,alpha, beta, player = True, i=np.array([0])):
@@ -88,7 +87,7 @@ def get_valid_moves(board: np.ndarray):
     valid_moves = np.arange(board.shape[1])[is_open]
     return valid_moves
 
-def is_open_row(board):
+def is_open_col(board):
     is_open = board[-1, :] == 0
     return is_open
 
