@@ -26,7 +26,7 @@ def get_free_row(board):
     free_row = [np.count_nonzero(board[:,i]) for i in range(7)]
     return free_row
     
-def iterate_states(board,depth,player = True, i=np.array([0])):
+def iterate_states(board,depth,alpha, beta, player = True, i=np.array([0])):
 
     if depth == 0: # depth =0 means there has been x=depth moves carried out
         board_score = evaluate(i)
@@ -37,52 +37,63 @@ def iterate_states(board,depth,player = True, i=np.array([0])):
         return board_score
 
     if player == True:
-        max_score = -100
+        max_score = float('-inf')
         for move in range(2):
             new_board = board.copy() # copy should be done inside the loop becasue ... don't move it out
             new_board = apply_player_action(new_board,move,2)
-            board_score = iterate_states(new_board,depth-1,False,i)
+            board_score = iterate_states(new_board,depth-1,alpha,beta,False,i)
             max_score = max(max_score,board_score)
+            alpha = max(alpha,board_score)
+            if beta <= alpha:
+                break
         return max_score
     else:
-        min_score = +100
+        min_score = float('inf')
         for move in range(2):
             new_board = board.copy() # copy should be done inside the loop becasue ... don't move it out
             new_board = apply_player_action(new_board,move,1)
-            board_score = iterate_states(new_board,depth-1,True,i)
+            board_score = iterate_states(new_board,depth-1,alpha,beta,True,i)
             min_score = min(min_score,board_score)
+            beta = min(beta,board_score)
+            if beta <= alpha:
+                    break
         return min_score
     
 def get_best_move(board,depth):
     best_move = None
-    best_eval = -100
-
+    max_score = float('-inf')
+    alpha = float('-inf')
+    beta = float('inf')
     for move in range(2):
         new_board = board.copy()
         new_board = apply_player_action(new_board, move, 2)
-        eval = iterate_states(new_board, depth-1, False)  # Adjust depth as needed
-        if eval > best_eval:
-            best_eval = eval
+        board_score = iterate_states(new_board, depth-1,alpha,beta, player= False)  # Adjust depth as needed
+        if board_score > max_score:
+            max_score = board_score
             best_move = move
+        alpha = max(alpha,board_score)
+        if beta <= alpha:
+            break
 
-    return best_move , best_eval
+    return best_move , max_score
     
 def evaluate(i):
+    score = [-1,3,5,-6,-4]
     if i == [0]:
-        return 0
+        return score[i[0]]
     if i == [1]:
-        return 1
+        return score[i[0]]
     if i == [2]:
-        return 2
+        return score[i[0]]
     if i == [3]:
-        return 3
+        return score[i[0]]
     if i == [4]:
-        return 0
+        return score[i[0]]
     if i == [5]:
-        return -1
+        return score[i[0]]
     if i == [6]:
-        return -1
+        return score[i[0]]
     if i == [7]:
-        return -2
+        return score[i[0]]
 
 
