@@ -66,28 +66,28 @@ def evaluate_at_pivot(board,pivot,player):
 def evaluate_row(board,pivot_point,player):
     array,position = pivot_row(board,pivot_point)
     windows_row = extract_windows(array,position)
-    score_row = evaluate_one_direction(windows_row,player)
+    score_row = evaluate_single_direction(windows_row,player)
     return score_row
 
 def evaluate_col(board,pivot_point,player):
     array,position = pivot_col(board,pivot_point)
     windows_col = extract_windows(array,position)
-    score_col = evaluate_one_direction(windows_col,player)
+    score_col = evaluate_single_direction(windows_col,player)
     return score_col
 
 def evaluate_diag(board,pivot_point,player):
     array,position = pivot_diag(board,pivot_point)
     windows_diag = extract_windows(array,position)
-    sccore_diag = evaluate_one_direction(windows_diag,player)
+    sccore_diag = evaluate_single_direction(windows_diag,player)
     return sccore_diag
 
 def evaluate_opp_diag(board,pivot_point,player):
     array,position = pivot_opp_diag(board,pivot_point)
     windows_opp_diag = extract_windows(array,position)
-    score_opp_diag = evaluate_one_direction(windows_opp_diag,player)
+    score_opp_diag = evaluate_single_direction(windows_opp_diag,player)
     return score_opp_diag
 
-def evaluate_one_direction(windows,player):
+def evaluate_single_direction(windows,player):
     # I need to evlaute each direction separately to catch if for example therer is both horizontal and diagonal score 3.
     score = []
     for window in windows:
