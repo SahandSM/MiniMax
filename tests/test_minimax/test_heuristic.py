@@ -176,11 +176,13 @@ def test_evaluate_single_direction_opponent():
     print('direction score:',direction_score)
 
 def test_evaluate_row():
+    # note that evaluate_row returns 3 only once although there is
+    # two sequence of three. but their value is the same. 
     board_string = ''' 
      - - - - - - - 
     |             |
     |             |
-    |X X X   x x x|
+    |X X X   X X X|
     |             |
     |             |
     |             |
