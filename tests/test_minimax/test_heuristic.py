@@ -108,3 +108,14 @@ def test_evaluate_window_player_pieces():
     window_score = evaluate_window_player_pieces(window,player)
     print('window score player peices:',window_score)
 
+
+def test_evaluate_window_opponent_pieces():
+    
+    window = [2,2,0,2]
+    print('\nwindow:',window)
+
+    player = PLAYER1
+    print('\nplayer:',player)
+
+    window_score = evaluate_window_opponent_pieces(window,player)
+    print('window score opponent peices:',window_score)

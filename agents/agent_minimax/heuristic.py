@@ -91,12 +91,12 @@ def evaluate_one_direction(windows,player):
     # I need to evlaute each direction separately to catch if for example therer is both horizontal and diagonal score 3.
     score = []
     for window in windows:
-        player_new_score = evaluate_window_for_player(window,player)
+        player_new_score = evaluate_window_player_pieces(window,player)
         score = score + player_new_score
         if player_new_score: break
 
     for window in windows:
-        opponent_new_score = evaluate_window_for_opponent(window,player)
+        opponent_new_score = evaluate_window_opponent_pieces(window,player)
         score = score + opponent_new_score
         if opponent_new_score: break
     return score
