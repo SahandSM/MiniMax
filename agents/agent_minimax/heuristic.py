@@ -30,34 +30,26 @@ def extract_windows(array: list,pivot_position: int) -> list:
     return windows
 
 def pivot_row(board,pivot):
-    array_window = board[pivot[0]]
-    print('row_to_extract:',array_window)
+    row_window = board[pivot[0]]
     position = pivot[1]
-    print('position:',position)
-    return array_window,position
+    return row_window,position
 
 def pivot_col(board,pivot):
-    array_window = board[:,pivot[1]]
-    print('col_to_extract:',array_window)
+    col_window = board[:,pivot[1]]
     position = pivot[0]
-    print('position:',position)
-    return array_window,position
+    return col_window,position
 
 def pivot_diag(board,pivot):
-    array_window = np.diag(board,pivot[1]-pivot[0])
-    print('daig_to_extract:',array_window)
+    diag_window = np.diag(board,pivot[1]-pivot[0])
     position = min(pivot)
-    print('position:',position)
-    return array_window,position
+    return diag_window,position
 
 def pivot_opp_diag(board,pivot):
     borad_flipped = np.fliplr(board)
     pivot = pivot[0],6-pivot[1]
-    array_window = np.diag(borad_flipped,pivot[1]-pivot[0])
-    print('opp_daig_to_extract:',array_window)
+    opp_daig_window = np.diag(borad_flipped,pivot[1]-pivot[0])
     position = min(pivot)
-    print('position:',position)
-    return array_window,position
+    return opp_daig_window,position
 
 def evaluate_at_pivot(board,pivot,player):
     score = []
