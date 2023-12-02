@@ -3,6 +3,18 @@ import numpy as np
 from agents.game_utils import *
 from typing import Optional, Callable
 
+def evlaute_at_all_pivots(board,all_pivots,player):
+    all_pivot_scores_player = []
+    all_pivot_scores_opponent = []
+
+    for pivot in all_pivots:
+        pivot_score_player, pivot_score_opponent =  evaluate_at_pivot(board,pivot,player)      
+        all_pivot_scores_player = all_pivot_scores_player + pivot_score_player
+        all_pivot_scores_opponent = all_pivot_scores_opponent + pivot_score_opponent
+
+    return all_pivot_scores_player, all_pivot_scores_opponent
+
+
 def evaluate_at_pivot(board,pivot,player):
     row_score_player, row_score_opponent = evaluate_row(board,pivot,player)
     col_score_player, col_score_opponent = evaluate_col(board,pivot,player)
