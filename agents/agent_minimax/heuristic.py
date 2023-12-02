@@ -42,8 +42,9 @@ def pivot_col(board,pivot):
 def evaluate_diag(board,pivot_point,player):
     array,position = pivot_diag(board,pivot_point)
     windows_diag = extract_windows(array,position)
-    sccore_diag = evaluate_single_direction(windows_diag,player)
-    return sccore_diag
+    diag_score_player = evaluate_single_direction_player(windows_diag,player)
+    diag_score_opponent = evaluate_single_direction_opponent(windows_diag,player)
+    return diag_score_player,diag_score_opponent
 
 def pivot_diag(board,pivot):
     diag_window = np.diag(board,pivot[1]-pivot[0])
