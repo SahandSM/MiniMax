@@ -102,7 +102,7 @@ def evaluate_single_direction(windows,player):
     return score
 
 def evaluate_single_direction_player(windows,player):
-    windows_score = []
+    windows_score = [0]
     for window in windows:
         window_score = evaluate_window_player_pieces(window,player)
         windows_score = windows_score + window_score
@@ -110,7 +110,7 @@ def evaluate_single_direction_player(windows,player):
     return direction_score
 
 def evaluate_window_player_pieces(window,player):
-    window_score = []
+    window_score = [0]
     n_pieces = window.count(player)
     n_zeros = window.count(0)
 
@@ -119,7 +119,7 @@ def evaluate_window_player_pieces(window,player):
     return window_score
 
 def evaluate_window_opponent_pieces(window,player):
-    score = []
+    score = [0]
     n_pieces = window.count(player)
     n_zeros = window.count(0)
 
