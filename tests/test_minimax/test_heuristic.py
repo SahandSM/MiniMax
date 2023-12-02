@@ -156,3 +156,21 @@ def test_evaluate_single_direction_player():
 
     direction_score = evaluate_single_direction_player(windows,player)
     print('direction score:',direction_score)
+
+def test_evaluate_single_direction_opponent():
+    # This is an example where evaluate_single_directin returns 
+    # a score of 2 instead of 3 when we have the break line 
+    row_window = [0,1,1,0,1,2,2]
+    position = 3
+    windows = [
+        [0,1,1,0],
+        [1,1,0,1],
+        [1,0,1,1],
+        [0,1,1,2]
+    ]
+
+    player = PLAYER2
+    print('\nplayer:',player)
+
+    direction_score = evaluate_single_direction_opponent(windows,player)
+    print('direction score:',direction_score)
