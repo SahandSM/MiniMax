@@ -38,9 +38,9 @@ def test_heuristic_2():
     print(score)
 
 def test_extract_windows():
-    array = [2,2,0,1,1,1,0]
-    pivot = 5
-    windows = extract_windows(array,pivot)
+    array = [0,1,2,3,4,5,6]
+    position = 3
+    windows = extract_windows(array,position)
     print(windows)
 
 def test_pivot_row():
@@ -174,3 +174,26 @@ def test_evaluate_single_direction_opponent():
 
     direction_score = evaluate_single_direction_opponent(windows,player)
     print('direction score:',direction_score)
+
+def test_evaluate_row():
+    board_string = ''' 
+     - - - - - - - 
+    |             |
+    |             |
+    |X X X   x x x|
+    |             |
+    |             |
+    |             |
+     - - - - - - -
+     0 1 2 3 4 5 6
+    '''
+    board = string_to_board(board_string)
+    print(board)
+
+    player = PLAYER1
+    pivot = (3,5)
+
+    row_score_player,row_score_opponent = evaluate_row(board,pivot,player)
+    print('\nplayer row score:',row_score_player)
+    print('opponent row score:',row_score_opponent)
+
