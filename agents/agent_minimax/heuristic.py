@@ -101,7 +101,7 @@ def evaluate_one_direction(windows,player):
         if opponent_new_score: break
     return score
 
-def evaluate_window_for_player(window,player):
+def evaluate_window_player_pieces(window,player):
     window_score = []
     n_pieces = window.count(player)
     n_zeros = window.count(0)
@@ -110,7 +110,7 @@ def evaluate_window_for_player(window,player):
     elif n_pieces == 2 and n_zeros == 2: window_score.append(2)
     return window_score
 
-def evaluate_window_for_opponent(window,player):
+def evaluate_window_opponent_pieces(window,player):
     score = []
     n_pieces = window.count(player)
     n_zeros = window.count(0)

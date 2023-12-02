@@ -97,7 +97,7 @@ def test_pivot_opp_diag():
     print(opp_daig_window)
     print(position)
 
-def test_evaluate_window_for_player():
+def test_evaluate_window_player_pieces():
     
     window = [2,0,1,1]
     print('\nwindow:',window)
@@ -105,7 +105,6 @@ def test_evaluate_window_for_player():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_for_player(window,player)
-    print('window score:',window_score)
+    window_score = evaluate_window_player_pieces(window,player)
+    print('window score player peices:',window_score)
 
-    
