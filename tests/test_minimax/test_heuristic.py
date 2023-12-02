@@ -222,3 +222,27 @@ def test_evaluate_col():
     col_score_player,col_score_opponent = evaluate_col(board,pivot,player)
     print('\nplayer col score:',col_score_player)
     print('opponent col score:',col_score_opponent)
+
+def test_evaluate_diag():
+ 
+    board_string = ''' 
+     - - - - - - - 
+    |  O       X  |
+    |    O   X    |
+    |             |
+    |    X   O    |
+    |  O       X  |
+    |O           X|
+     - - - - - - -
+     0 1 2 3 4 5 6
+    '''
+    board = string_to_board(board_string)
+    print('\n',board)
+
+    player = PLAYER1
+    pivot = (3,3)
+    print(board[pivot])
+
+    diag_score_player,diag_score_opponent = evaluate_diag(board,pivot,player)
+    print('\nplayer diag score:',diag_score_player)
+    print('opponent diag score:',diag_score_opponent)
