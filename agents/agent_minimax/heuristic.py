@@ -101,6 +101,14 @@ def evaluate_single_direction(windows,player):
         if opponent_new_score: break
     return score
 
+def evaluate_single_direction_player(windows,player):
+    windows_score = []
+    for window in windows:
+        window_score = evaluate_window_player_pieces(window,player)
+        windows_score = windows_score + window_score
+    direction_score = [max(windows_score)]
+    return direction_score
+
 def evaluate_window_player_pieces(window,player):
     window_score = []
     n_pieces = window.count(player)
