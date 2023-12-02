@@ -3,6 +3,19 @@ import numpy as np
 from agents.game_utils import *
 from typing import Optional, Callable
 
+def aggregate_scores(all_pivot_scores_player, all_pivot_scores_opponent):
+    threes_player = all_pivot_scores_player.count(3)
+    twos_player = all_pivot_scores_player.count(2)
+    threes_opponent = all_pivot_scores_opponent.count(-3)
+    twos_opponent = all_pivot_scores_opponent.count(-2)
+
+    if threes_player > 1 and threes_opponent <= 1: board_score = 500
+    elif threes_player <= 1 and threes_opponent > 1: board_score = -500
+    else: board_score = (threes_player - threes_opponent) * 15 + \
+                        (twos_player - twos_opponent) * 10
+    return board_score
+    
+
 def evlaute_at_all_pivots(board,all_pivots,player):
     all_pivot_scores_player = []
     all_pivot_scores_opponent = []
