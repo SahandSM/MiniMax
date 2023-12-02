@@ -346,3 +346,24 @@ def test_get_pivots():
 
     all_pivots = get_pivots(board)
     print('\nall pivots:\n', all_pivots)
+
+def test_evaluate_board():
+    board_string = ''' 
+     - - - - - - - 
+    |X            |
+    |X O          |
+    |O X O O      |
+    |X O X O      |
+    |O X O X X    |
+    |X O X X X X  |
+     - - - - - - -
+     0 1 2 3 4 5 6
+    '''
+    board = string_to_board(board_string)
+    print('\n',board)
+    
+    player = PLAYER1
+
+    board_score = evaluate_board(board,player)
+    print('board score:',board_score)
+
