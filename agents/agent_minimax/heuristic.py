@@ -54,8 +54,9 @@ def pivot_diag(board,pivot):
 def evaluate_opp_diag(board,pivot_point,player):
     array,position = pivot_opp_diag(board,pivot_point)
     windows_opp_diag = extract_windows(array,position)
-    score_opp_diag = evaluate_single_direction(windows_opp_diag,player)
-    return score_opp_diag
+    opp_diag_score_player = evaluate_single_direction_player(windows_opp_diag,player)
+    opp_diag_score_opponent = evaluate_single_direction_opponent(windows_opp_diag,player)
+    return opp_diag_score_player,opp_diag_score_opponent
 
 def pivot_opp_diag(board,pivot):
     borad_flipped = np.fliplr(board)
