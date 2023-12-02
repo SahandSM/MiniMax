@@ -155,11 +155,19 @@ def evaluate_window_opponent_pieces(window,player):
 
 def get_pivots(board):
     #remember to mask tpivots with the is_open_rows
-    pass
+    free_rows = get_free_rows(board)
+    col_index = range(BOARD_COLS)
+    all_pivots = [(row,column) for row, column in zip(free_rows,col_index)]
+    all_pivots = np.array(all_pivots)
 
-def get_free_row(board):
-    free_row = [np.count_nonzero(board[:,i]) for i in range(7)]
-    return free_row
+    is_open = is_open_row(board)
+    all_pivots = all_pivots[is_open]
+
+    return all_pivots
+
+def get_free_rows(board):
+    free_rows = [np.count_nonzero(board[:,i]) for i in range(BOARD_COLS)]
+    return free_rows
 
 def is_open_row(board):
     is_open = board[-1, :] == 0
