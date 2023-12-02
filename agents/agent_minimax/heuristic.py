@@ -109,6 +109,14 @@ def evaluate_single_direction_player(windows,player):
     direction_score = [max(windows_score)]
     return direction_score
 
+def evaluate_single_direction_opponent(windows,player):
+    windows_score = [0]
+    for window in windows:
+        window_score = evaluate_window_opponent_pieces(window,player)
+        windows_score = windows_score + window_score
+    direction_score = [min(windows_score)]
+    return direction_score
+
 def evaluate_window_player_pieces(window,player):
     window_score = [0]
     n_pieces = window.count(player)
