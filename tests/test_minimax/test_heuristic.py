@@ -312,7 +312,7 @@ def test_evlaute_at_all_pivots():
     print('\n',board)
 
     player = PLAYER1
-    
+
     pivot_1 = (3,3)
     pivot_2 = (1,2)
     all_pivots = [pivot_1,pivot_2]
@@ -320,3 +320,11 @@ def test_evlaute_at_all_pivots():
     all_pivot_scores_player, all_pivot_scores_opponent = evlaute_at_all_pivots(board,all_pivots,player)
     print('player score at all pivots:',all_pivot_scores_player)
     print('opponent scores at all pivots:', all_pivot_scores_opponent)
+
+def test_aggregate_scores():
+    all_pivot_scores_player = [0,0,2,2,3,2,2,0]
+    all_pivot_scores_opponent = [0,0,-3,-2,-2,-2,0,0]
+
+    board_score = aggregate_scores(all_pivot_scores_player, all_pivot_scores_opponent)
+
+    print('board score:',board_score)
