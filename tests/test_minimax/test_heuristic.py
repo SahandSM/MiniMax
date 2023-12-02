@@ -99,7 +99,7 @@ def test_pivot_opp_diag():
 
 def test_evaluate_window_player_pieces():
     
-    window = [2,0,1,1]
+    window = [1,0,1,1]
     print('\nwindow:',window)
 
     player = PLAYER1
@@ -111,7 +111,7 @@ def test_evaluate_window_player_pieces():
 
 def test_evaluate_window_opponent_pieces():
     
-    window = [2,2,0,2]
+    window = [2,0,0,2]
     print('\nwindow:',window)
 
     player = PLAYER1
@@ -119,3 +119,23 @@ def test_evaluate_window_opponent_pieces():
 
     window_score = evaluate_window_opponent_pieces(window,player)
     print('window score opponent peices:',window_score)
+
+
+def test_evaluate_single_direction():
+    # This is an example where evaluate_single_directin returns 
+    # a score of 2 instead of 3 when we have the break line 
+    row_window = [0,1,1,0,1,2,2]
+    position = 3
+    windows = [
+        [0,1,1,0],
+        [1,1,0,1],
+        [1,0,1,1],
+        [0,1,1,2]
+    ]
+
+    player = PLAYER1
+    print('\nplayer:',player)
+
+    direction_score = evaluate_single_direction(windows,player)
+    print('direction score:',direction_score)
+
