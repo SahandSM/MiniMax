@@ -4,13 +4,15 @@ from agents.game_utils import *
 from typing import Optional, Callable
 
 def evaluate_at_pivot(board,pivot,player):
-    score = []
-    score_row = evaluate_row(board,pivot,player)
-    score_col = evaluate_col(board,pivot,player)
-    score_diag = evaluate_diag(board,pivot,player)
-    score_opp_diag = evaluate_opp_diag(board,pivot,player)
-    score = score_row + score_col + score_diag + score_opp_diag
-    return score
+    row_score_player, row_score_opponent = evaluate_row(board,pivot,player)
+    col_score_player, col_score_opponent = evaluate_col(board,pivot,player)
+    diag_score_player, diag_score_opponent  = evaluate_diag(board,pivot,player)
+    opp_diag_score_player, opp_diag_score_opponent  = evaluate_opp_diag(board,pivot,player)
+
+    pivot_score_player = row_score_player + col_score_player + diag_score_player + opp_diag_score_player
+    pivot_score_opponent = row_score_opponent +col_score_opponent + diag_score_opponent +opp_diag_score_opponent
+    
+    return pivot_score_player, pivot_score_opponent
 
 def evaluate_row(board,pivot_point,player):
     array,position = pivot_row(board,pivot_point)
