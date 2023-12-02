@@ -328,3 +328,21 @@ def test_aggregate_scores():
     board_score = aggregate_scores(all_pivot_scores_player, all_pivot_scores_opponent)
 
     print('board score:',board_score)
+
+def test_get_pivots():
+    board_string = ''' 
+     - - - - - - - 
+    |X            |
+    |X X          |
+    |X X X        |
+    |X X X X      |
+    |X X X X X    |
+    |X X X X X X  |
+     - - - - - - -
+     0 1 2 3 4 5 6
+    '''
+    board = string_to_board(board_string)
+    print('\n',board)
+
+    all_pivots = get_pivots(board)
+    print('\nall pivots:\n', all_pivots)
