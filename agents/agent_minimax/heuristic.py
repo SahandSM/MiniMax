@@ -15,12 +15,13 @@ def evaluate_at_pivot(board,pivot,player):
 def evaluate_row(board,pivot_point,player):
     array,position = pivot_row(board,pivot_point)
     windows_row = extract_windows(array,position)
-    score_row = evaluate_single_direction(windows_row,player)
-    return score_row
+    row_score_player = evaluate_single_direction_player(windows_row,player)
+    row_score_opponent = evaluate_single_direction_opponent(windows_row,player)
+    return row_score_player,row_score_opponent
 
 def pivot_row(board,pivot):
     """
-    return the row contraining the pivot.
+    return the row contraining the pivot and the position of the pivot in the row.
     """
     row_window = board[pivot[0]]
     position = pivot[1]
