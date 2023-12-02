@@ -88,20 +88,6 @@ def extract_windows(array: list,pivot_position: int) -> list:
         windows.append(window)
     return windows
 
-def evaluate_single_direction(windows,player):
-    # I need to evlaute each direction separately to catch if for example therer is both horizontal and diagonal score 3.
-    score = []
-    for window in windows:
-        player_new_score = evaluate_window_player_pieces(window,player)
-        score = score + player_new_score
-        if player_new_score: break
-
-    for window in windows:
-        opponent_new_score = evaluate_window_opponent_pieces(window,player)
-        score = score + opponent_new_score
-        if opponent_new_score: break
-    return score
-
 def evaluate_single_direction_player(windows,player):
     windows_score = [0]
     for window in windows:
