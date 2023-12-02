@@ -165,15 +165,6 @@ def is_open_row(board):
     is_open = board[-1, :] == 0
     return is_open
 
-def evaluate_board(board,player):
-    # pivots = get_pivots(board)
-    # score =[]
-    # for pivot in pivots:
-    #       windows = get_windows_at_pivot(board,pivot)
-    #       new_score = evaluate_at_pivot(windows)
-    #       score = score + new_score
-    # return score
-    pass
 
 
     
