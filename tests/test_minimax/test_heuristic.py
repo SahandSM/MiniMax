@@ -190,12 +190,35 @@ def test_evaluate_row():
      0 1 2 3 4 5 6
     '''
     board = string_to_board(board_string)
-    print(board)
+    print('\n',board)
 
     player = PLAYER1
-    pivot = (3,5)
+    pivot = (3,3)
 
     row_score_player,row_score_opponent = evaluate_row(board,pivot,player)
     print('\nplayer row score:',row_score_player)
     print('opponent row score:',row_score_opponent)
 
+def test_evaluate_col():
+ 
+    board_string = ''' 
+     - - - - - - - 
+    |             |
+    |             |
+    |      O      |
+    |      O      |
+    |      X      |
+    |      O      |
+     - - - - - - -
+     0 1 2 3 4 5 6
+    '''
+    board = string_to_board(board_string)
+    print('\n',board)
+
+    player = PLAYER1
+    pivot = (4,3)
+    print(board[pivot])
+
+    col_score_player,col_score_opponent = evaluate_col(board,pivot,player)
+    print('\nplayer col score:',col_score_player)
+    print('opponent col score:',col_score_opponent)
