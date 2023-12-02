@@ -30,8 +30,9 @@ def pivot_row(board,pivot):
 def evaluate_col(board,pivot_point,player):
     array,position = pivot_col(board,pivot_point)
     windows_col = extract_windows(array,position)
-    score_col = evaluate_single_direction(windows_col,player)
-    return score_col
+    col_score_player = evaluate_single_direction_player(windows_col,player)
+    col_score_opponent = evaluate_single_direction_opponent(windows_col,player)
+    return col_score_player,col_score_opponent
 
 def pivot_col(board,pivot):
     col_window = board[:,pivot[1]]
