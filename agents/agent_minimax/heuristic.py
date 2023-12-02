@@ -30,6 +30,9 @@ def extract_windows(array: list,pivot_position: int) -> list:
     return windows
 
 def pivot_row(board,pivot):
+    """
+    return the row contraining the pivot.
+    """
     row_window = board[pivot[0]]
     position = pivot[1]
     return row_window,position
@@ -99,13 +102,13 @@ def evaluate_one_direction(windows,player):
     return score
 
 def evaluate_window_for_player(window,player):
-    score = []
+    window_score = []
     n_pieces = window.count(player)
     n_zeros = window.count(0)
 
-    if n_pieces == 3: score.append(3)
-    elif n_pieces == 2 and n_zeros == 2: score.append(2)
-    return score
+    if n_pieces == 3: window_score.append(3)
+    elif n_pieces == 2 and n_zeros == 2: window_score.append(2)
+    return window_score
 
 def evaluate_window_for_opponent(window,player):
     score = []
