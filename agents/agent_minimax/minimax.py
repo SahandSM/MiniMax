@@ -1,4 +1,4 @@
-
+ 
 import numpy as np
 
 from agents.game_utils import *
@@ -89,7 +89,8 @@ def evaluate(i):
 
 def get_valid_moves(board: np.ndarray):
     is_open = board[-1, :] == 0
-    valid_moves = np.arange(board.shape[1])[is_open]
+    possible_moves = np.arange(BOARD_COLS)
+    valid_moves = possible_moves[is_open]
     return valid_moves
 
 def is_open_col(board):
