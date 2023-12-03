@@ -162,15 +162,30 @@ def evaluate_window_opponent_pieces(window,player):
 
 def get_pivots(board):
     #remember to mask tpivots with the is_open_rows
-    free_rows = get_free_rows(board)
-    col_index = range(BOARD_COLS)
-    all_pivots = [(row,column) for row, column in zip(free_rows,col_index)]
-    all_pivots = np.array(all_pivots)
+    pivot_board = board.copy()
 
-    is_open = is_open_row(board)
-    all_pivots = all_pivots[is_open]
+    max_height = get_max_height(pivot_board)
+
+    max_heigh_pivot = pivot_board[:max_height+1,:]
+
+    all_pivots = list(zip(*np.where(max_heigh_pivot == 0)))
+    # free_rows = get_free_rows(board)
+    # col_index = range(BOARD_COLS)
+    # all_pivots = [(row,column) for row, column in zip(free_rows,col_index)]
+    # all_pivots = np.array(all_pivots)
+
+    # is_open = is_open_row(board)
+    # all_pivots = all_pivots[is_open]
 
     return all_pivots
+
+def get_max_height(board):
+    col_heights = [np.count_nonzero(board[:,i]) for i in range(BOARD_COLS)]
+    col_heights = np.array(col_heights)
+    is_open = is_open_row(board)
+    free_col_heights = col_heights[is_open]
+    max_height = max(free_col_heights)
+    return max_height
 
 def get_free_rows(board):
     free_rows = [np.count_nonzero(board[:,i]) for i in range(BOARD_COLS)]
@@ -179,6 +194,9 @@ def get_free_rows(board):
 def is_open_row(board):
     is_open = board[-1, :] == 0
     return is_open
+
+
+
 
 
 
