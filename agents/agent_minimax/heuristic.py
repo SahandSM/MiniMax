@@ -143,22 +143,24 @@ def evaluate_single_direction_opponent(windows,player):
     return direction_score
 
 def evaluate_window_player_pieces(window,player):
+    """Evaluates a single winodw considering the pattern of player/agent pieces.
+    """
     window_score = [0]
     n_pieces = window.count(player)
     n_zeros = window.count(0)
 
-    if n_pieces == 3: window_score.append(3)
-    elif n_pieces == 2 and n_zeros == 2: window_score.append(2)
+    if n_pieces == 3: window_score = [3]
+    elif n_pieces == 2 and n_zeros == 2: window_score = [2]
     return window_score
 
 def evaluate_window_opponent_pieces(window,player):
-    score = [0]
+    window_score = [0]
     n_pieces = window.count(player)
     n_zeros = window.count(0)
 
-    if n_pieces == 0 and n_zeros == 1: score.append(-3)
-    elif n_pieces == 0 and n_zeros == 2: score.append(-2)
-    return score
+    if n_pieces == 0 and n_zeros == 1: window_score = -3
+    elif n_pieces == 0 and n_zeros == 2: window_score = -2
+    return window_score
 
 def get_pivots(board):
     #remember to mask tpivots with the is_open_rows
