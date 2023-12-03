@@ -98,5 +98,23 @@ def test_generate_move_minimax():
           f'best board score is:', best_eval)
     return
 
+def test_generate_move_minimax_zero():
+    board_string = ''' 
+    - - - - - - - 
+    |             |
+    |             |
+    |             |
+    |             |
+    |             |
+    |             |
+    - - - - - - -
+    0 1 2 3 4 5 6
+    '''
+    board = string_to_board(board_string)
+    # board_copy = board.copy() it is not necessary if you are suare you are making a copy in the agent before applying actions there
+    best_move = generate_move_minimax(board,player = PLAYER2, saved_state=None)
+    print('best columns to take is:',best_move)
+    return
+
 
     
