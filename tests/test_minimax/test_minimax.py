@@ -56,18 +56,24 @@ def test_get_valid_moves():
 def test_iterate_states():
     board_string = ''' 
     - - - - - - - 
-    |             |
-    |             |
-    |             |
-    |             |
-    |             |
-    |             |
+    |    O O O O O|
+    |    O O O O O|
+    |    O O O O O|
+    |O O O O O O O|
+    |O O O O O O O|
+    |O O O O O O O|
     - - - - - - -
     0 1 2 3 4 5 6
     '''
     board = string_to_board(board_string)
     # board_copy = board.copy() it is not necessary if you are suare you are making a copy in the agent before applying actions there
-    score = iterate_states(board)
+    
+    player = PLAYER1
+    depth = DEPTH
+    alpha = float('-inf')
+    beta = float('inf')
+
+    score = iterate_states(board,player, depth,alpha, beta, maximizing_player = True, i=np.array([0]))
     print('\nOriginal\n'
         ,pretty_print_board(board))
     print('score is :',score)
