@@ -9,7 +9,7 @@ def test_evaluate_window_player_pieces1():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_player_pieces(window,player)
+    window_score = evaluate_single_window_player(window,player)
     print('window score player peices:',window_score)
     assert window_score == [3]
 
@@ -20,7 +20,7 @@ def test_evaluate_window_player_pieces2():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_player_pieces(window,player)
+    window_score = evaluate_single_window_player(window,player)
     print('window score player peices:',window_score)
     assert window_score == [3]
 
@@ -32,7 +32,7 @@ def test_evaluate_window_player_pieces3():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_player_pieces(window,player)
+    window_score = evaluate_single_window_player(window,player)
     print('window score player peices:',window_score)
     assert window_score == [3]
 
@@ -43,7 +43,7 @@ def test_evaluate_window_player_pieces4():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_player_pieces(window,player)
+    window_score = evaluate_single_window_player(window,player)
     print('window score player peices:',window_score)
     assert window_score == [2]
 
@@ -54,7 +54,7 @@ def test_evaluate_window_player_pieces5():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_player_pieces(window,player)
+    window_score = evaluate_single_window_player(window,player)
     print('window score player peices:',window_score)
     assert window_score == [2]
 
@@ -65,7 +65,7 @@ def test_evaluate_window_player_pieces6():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_player_pieces(window,player)
+    window_score = evaluate_single_window_player(window,player)
     print('window score player peices:',window_score)
     assert window_score == [0]
 
@@ -76,7 +76,7 @@ def test_evaluate_window_player_pieces7():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_player_pieces(window,player)
+    window_score = evaluate_single_window_player(window,player)
     print('window score player peices:',window_score)
     assert window_score == [0]
 
@@ -88,7 +88,7 @@ def test_evaluate_window_opponent_pieces1():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_opponent_pieces(window,player)
+    window_score = evaluate_single_window_opponent(window,player)
     print('window score player peices:',window_score)
     assert window_score == [0]
 
@@ -99,7 +99,7 @@ def test_evaluate_window_opponent_pieces2():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_opponent_pieces(window,player)
+    window_score = evaluate_single_window_opponent(window,player)
     print('window score player peices:',window_score)
     assert window_score == [-3]
 
@@ -110,7 +110,7 @@ def test_evaluate_window_opponent_pieces3():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_opponent_pieces(window,player)
+    window_score = evaluate_single_window_opponent(window,player)
     print('window score player peices:',window_score)
     assert window_score == [-3]
 
@@ -121,7 +121,7 @@ def test_evaluate_window_opponent_pieces4():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_opponent_pieces(window,player)
+    window_score = evaluate_single_window_opponent(window,player)
     print('window score player peices:',window_score)
     assert window_score == [-2]
 
@@ -132,7 +132,7 @@ def test_evaluate_window_opponent_pieces5():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_opponent_pieces(window,player)
+    window_score = evaluate_single_window_opponent(window,player)
     print('window score player peices:',window_score)
     assert window_score == [0]
 
@@ -143,6 +143,6 @@ def test_evaluate_window_opponent_pieces6():
     player = PLAYER1
     print('\nplayer:',player)
 
-    window_score = evaluate_window_opponent_pieces(window,player)
+    window_score = evaluate_single_window_opponent(window,player)
     print('window score player peices:',window_score)
     assert window_score == [-2]
