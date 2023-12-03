@@ -5,12 +5,12 @@ from agents.game_utils import *
 from agents.agent_minimax.heuristic import *
 from typing import Optional, Callable
 
-
+DEPTH = 3
 
 def generate_move_minimax(board: np.ndarray, 
                          player: BoardPiece, 
                          saved_state: Optional[SavedState]) -> tuple[PlayerAction, Optional[SavedState]]:
-    depth = 3
+    depth = DEPTH
     best_move = None
     max_score = float('-inf')
     alpha = float('-inf')
@@ -21,7 +21,7 @@ def generate_move_minimax(board: np.ndarray,
     for move in valid_moves:
         new_board = board.copy()
         new_board = apply_player_action(new_board, move, player)
-        board_score = iterate_states(new_board,player, depth-1,alpha,beta, maximizing_player= False)  # Adjust depth as needed
+        board_score = iterate_states(new_board,player, depth-1,alpha,beta, maximizing_player= False)
         if board_score > max_score:
             max_score = board_score
             best_move = move
