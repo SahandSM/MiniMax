@@ -158,8 +158,8 @@ def evaluate_window_opponent_pieces(window,player):
     n_pieces = window.count(player)
     n_zeros = window.count(0)
 
-    if n_pieces == 0 and n_zeros == 1: window_score = -3
-    elif n_pieces == 0 and n_zeros == 2: window_score = -2
+    if n_pieces == 0 and n_zeros == 1: window_score = [-3]
+    elif n_pieces == 0 and n_zeros == 2: window_score = [-2]
     return window_score
 
 def get_pivots(board):
