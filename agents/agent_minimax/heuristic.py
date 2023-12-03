@@ -47,13 +47,13 @@ def evaluate_at_pivot(board,pivot,player):
     return pivot_score_player, pivot_score_opponent
 
 def evaluate_row(board,pivot_point,player):
-    array,position = pivot_row(board,pivot_point)
+    array,position = get_pivot_row(board,pivot_point)
     windows_row = extract_windows(array,position)
-    row_score_player = evaluate_single_direction_player(windows_row,player)
-    row_score_opponent = evaluate_single_direction_opponent(windows_row,player)
+    row_score_player = evaluate_windows_player(windows_row,player)
+    row_score_opponent = evaluate_windows_opponent(windows_row,player)
     return row_score_player,row_score_opponent
 
-def pivot_row(board,pivot):
+def get_pivot_row(board,pivot):
     """
     return the row contraining the pivot and the position of the pivot in the row.
     """
@@ -62,37 +62,37 @@ def pivot_row(board,pivot):
     return row_window,position
 
 def evaluate_col(board,pivot_point,player):
-    array,position = pivot_col(board,pivot_point)
+    array,position = get_pivot_col(board,pivot_point)
     windows_col = extract_windows(array,position)
-    col_score_player = evaluate_single_direction_player(windows_col,player)
-    col_score_opponent = evaluate_single_direction_opponent(windows_col,player)
+    col_score_player = evaluate_windows_player(windows_col,player)
+    col_score_opponent = evaluate_windows_opponent(windows_col,player)
     return col_score_player,col_score_opponent
 
-def pivot_col(board,pivot):
+def get_pivot_col(board,pivot):
     col_window = board[:,pivot[1]]
     position = pivot[0]
     return col_window,position
 
 def evaluate_diag(board,pivot_point,player):
-    array,position = pivot_diag(board,pivot_point)
+    array,position = get_pivot_diag(board,pivot_point)
     windows_diag = extract_windows(array,position)
-    diag_score_player = evaluate_single_direction_player(windows_diag,player)
-    diag_score_opponent = evaluate_single_direction_opponent(windows_diag,player)
+    diag_score_player = evaluate_windows_player(windows_diag,player)
+    diag_score_opponent = evaluate_windows_opponent(windows_diag,player)
     return diag_score_player,diag_score_opponent
 
-def pivot_diag(board,pivot):
+def get_pivot_diag(board,pivot):
     diag_window = np.diag(board,pivot[1]-pivot[0])
     position = min(pivot)
     return diag_window,position
 
 def evaluate_opp_diag(board,pivot_point,player):
-    array,position = pivot_opp_diag(board,pivot_point)
+    array,position = get_pivot_opp_diag(board,pivot_point)
     windows_opp_diag = extract_windows(array,position)
-    opp_diag_score_player = evaluate_single_direction_player(windows_opp_diag,player)
-    opp_diag_score_opponent = evaluate_single_direction_opponent(windows_opp_diag,player)
+    opp_diag_score_player = evaluate_windows_player(windows_opp_diag,player)
+    opp_diag_score_opponent = evaluate_windows_opponent(windows_opp_diag,player)
     return opp_diag_score_player,opp_diag_score_opponent
 
-def pivot_opp_diag(board,pivot):
+def get_pivot_opp_diag(board,pivot):
     borad_flipped = np.fliplr(board)
     pivot = pivot[0],6-pivot[1]
     opp_daig_window = np.diag(borad_flipped,pivot[1]-pivot[0])
@@ -126,23 +126,23 @@ def extract_windows(array: list,pivot_position: int) -> list:
         windows.append(window)
     return windows
 
-def evaluate_single_direction_player(windows,player):
+def evaluate_windows_player(windows,player):
     windows_score = [0]
     for window in windows:
-        window_score = evaluate_window_player_pieces(window,player)
+        window_score = evaluate_single_window_player(window,player)
         windows_score = windows_score + window_score
     direction_score = [max(windows_score)]
     return direction_score
 
-def evaluate_single_direction_opponent(windows,player):
+def evaluate_windows_opponent(windows,player):
     windows_score = [0]
     for window in windows:
-        window_score = evaluate_window_opponent_pieces(window,player)
+        window_score = evaluate_single_window_opponent(window,player)
         windows_score = windows_score + window_score
     direction_score = [min(windows_score)]
     return direction_score
 
-def evaluate_window_player_pieces(window,player):
+def evaluate_single_window_player(window,player):
     """Evaluates a single winodw considering the pattern of player/agent pieces.
     """
     window_score = [0]
@@ -153,7 +153,7 @@ def evaluate_window_player_pieces(window,player):
     elif n_pieces == 2 and n_zeros == 2: window_score = [2]
     return window_score
 
-def evaluate_window_opponent_pieces(window,player):
+def evaluate_single_window_opponent(window,player):
     window_score = [0]
     n_pieces = window.count(player)
     n_zeros = window.count(0)
