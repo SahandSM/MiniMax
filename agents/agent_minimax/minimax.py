@@ -28,7 +28,7 @@ def generate_move_minimax(board: np.ndarray,
         alpha = max(alpha,board_score)
         if beta <= alpha:
             break
-    return best_move , max_score
+    return best_move, saved_state
 
 def iterate_states(board,player, depth,alpha, beta, maximizing_player = True, i=np.array([0])):
     opponent = PLAYER2 if player == PLAYER1 else PLAYER1
@@ -36,11 +36,11 @@ def iterate_states(board,player, depth,alpha, beta, maximizing_player = True, i=
     valid_moves = get_valid_moves(board)
 
     if depth == 0 or len(valid_moves) == 0: # depth =0 means there has been x=depth moves carried out
-        board_score = evaluate(i)
-        print(f'\ndepth 0 reached for {i}:',
-              f'\nboard score is: {board_score}\n',
-              pretty_print_board(board))
-        i += 1
+        board_score = evaluate_board(board,player)
+        # print(f'\ndepth 0 reached for {i}:',
+        #       f'\nboard score is: {board_score}\n',
+        #       pretty_print_board(board))
+        # i += 1
         return board_score
 
 
