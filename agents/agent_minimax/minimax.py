@@ -90,8 +90,3 @@ def get_valid_moves(board: np.ndarray):
 def is_open_col(board):
     is_open = board[-1, :] == 0
     return is_open
-
-def get_free_row(board):
-    # remember to check for legal moves first.
-    free_row = [np.count_nonzero(board[:,i]) for i in range(7)]
-    return free_row
