@@ -1,6 +1,7 @@
 import numpy as np
 
 from agents.game_utils import *
+from agents.common import *
 from typing import Optional, Callable
 from typing import List, Tuple
 
@@ -477,23 +478,6 @@ def get_max_height(board: np.ndarray) -> int:
     free_col_heights = col_heights[is_open]
     max_height = max(free_col_heights)
     return max_height
-
-def is_open_row(board: np.ndarray) -> bool:
-    """
-    Check if the last row of the board is open (does not contain any non-zero elements).
-
-    Parameters
-    ----------
-    board : numpy.ndarray
-        2D array representing the game board.
-
-    Returns
-    -------
-    is_open: bool
-        True if the last row is open, False otherwise.
-    """
-    is_open = board[-1, :] == 0
-    return is_open
 
 
 

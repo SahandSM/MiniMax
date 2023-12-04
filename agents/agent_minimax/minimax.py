@@ -3,6 +3,7 @@ import numpy as np
 
 from agents.game_utils import *
 from agents.agent_minimax.heuristic import *
+from agents.common import *
 from typing import Optional, Callable
 
 DEPTH = 4 # I suggest depth 3 due to the desing of heuristics.
@@ -82,7 +83,3 @@ def get_valid_moves(board: np.ndarray):
     possible_moves = np.arange(BOARD_COLS)
     valid_moves = possible_moves[is_open]
     return valid_moves
-
-def is_open_col(board):
-    is_open = board[-1, :] == 0
-    return is_open
