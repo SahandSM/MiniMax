@@ -1,4 +1,5 @@
- 
+# this file along with test_minimax_old_print.py in test_minimax_alg folder was used to do sanity
+# checks by predicting and printing outcomes. 
 import numpy as np
 
 from agents.game_utils import *
