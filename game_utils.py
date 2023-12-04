@@ -27,6 +27,12 @@ class GameState(Enum):
 def initialize_game_state() -> np.ndarray:
     """
     Returns an ndarray, shape BOARD_SHAPE and data type (dtype) BoardPiece, initialized to 0 (NO_PLAYER).
+
+    Returns
+    -------
+    board: numpy.ndarray[BoardPiece]
+        An ndarray representing the game board with shape BOARD_SHAPE and dtype BoardPiece,
+        initialized to 0 (NO_PLAYER).
     """
     board = np.zeros(BOARD_SHAPE,BoardPiece)
     return board
@@ -46,6 +52,16 @@ def pretty_print_board(board: np.ndarray) -> str:
     |  O O X X     |
     |==============|
     |0 1 2 3 4 5 6 |
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+
+    Returns
+    -------
+    board_p: str
+        A string representation of the game board for display.
     """
 
     board_p = np.full((board.shape),NO_PLAYER_PRINT)
@@ -62,7 +78,18 @@ def string_to_board(pp_board: str) -> np.ndarray:
     Takes the output of pretty_print_board and turns it back into an ndarray.
     This is quite useful for debugging, when the agent crashed and you have the last
     board state as a string.
+
+    Parameters
+    ----------
+    pp_board : str
+        The string representation of a game board as produced by pretty_print_board.
+
+    Returns
+    -------
+    board_array: numpy.ndarray
+        A NumPy array representing the game board.
     """
+
     board_array_of_string = pp_board.split('|')[1::2]
     board_array_of_string =np.array([[i for i in row] for row in board_array_of_string])[:,::2]
 
@@ -78,6 +105,20 @@ def apply_player_action(board: np.ndarray, action: PlayerAction, player: BoardPi
     if action is not a legal move. If it is a legal move, the modified version of the
     board is returned and the original board should remain unchanged (i.e., either set
     back or copied beforehand).
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    action : PlayerAction
+        The column where the player wants to place their piece.
+    player : BoardPiece
+        The player making the move.
+
+    Returns
+    -------
+    board: numpy.ndarray
+        The modified game board after applying the player's action.
     """
 
     i = np.count_nonzero(board[:,action])
