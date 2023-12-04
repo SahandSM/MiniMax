@@ -196,7 +196,20 @@ def get_free_rows(board):
     free_rows = [np.count_nonzero(board[:,i]) for i in range(BOARD_COLS)]
     return free_rows
 
-def is_open_row(board):
+def is_open_row(board: np.ndarray) -> bool:
+    """
+    Check if the last row of the board is open (does not contain any non-zero elements).
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+
+    Returns
+    -------
+    bool
+        True if the last row is open, False otherwise.
+    """
     is_open = board[-1, :] == 0
     return is_open
 
