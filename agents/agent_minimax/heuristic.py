@@ -4,15 +4,43 @@ from agents.game_utils import *
 from typing import Optional, Callable
 from typing import List, Tuple
 
-def evaluate_board(board,player):
+def evaluate_board(board: np.ndarray, player: int) -> int:
+    """
+    Evaluate the overall score for the game board.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    player : int
+        The player for whom the scores are evaluated.
+
+    Returns
+    -------
+    board_score: int
+        The aggregated score for the game board.
+    """
     all_pivots = get_pivots(board)
     all_pivot_scores_player, all_pivot_scores_opponent = evlaute_at_all_pivots(board,all_pivots,player)
     board_score = aggregate_scores(all_pivot_scores_player, all_pivot_scores_opponent)
     return board_score
 
-def aggregate_scores(all_pivot_scores_player, all_pivot_scores_opponent):
+def aggregate_scores(all_pivot_scores_player: List[int], all_pivot_scores_opponent: List[int]) -> int:
+    """
+    Aggregate scores based on player and opponent scores at all pivots.
 
+    Parameters
+    ----------
+    all_pivot_scores_player : List[int]
+        A list containing player scores at all specified pivots.
+    all_pivot_scores_opponent : List[int]
+        A list containing opponent scores at all specified pivots.
 
+    Returns
+    -------
+    board_score: int
+        The aggregated score for the game board.
+    """
     threes_player = all_pivot_scores_player.count(3)
     twos_player = all_pivot_scores_player.count(2)
     threes_opponent = all_pivot_scores_opponent.count(-3)
