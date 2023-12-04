@@ -5,7 +5,7 @@ from agents.game_utils import *
 from agents.agent_minimax.heuristic import *
 from typing import Optional, Callable
 
-DEPTH = 3 # I suggest depth 3 due to the desing of heuristics.
+DEPTH = 4 # I suggest depth 3 due to the desing of heuristics.
 
 def generate_move_minimax(board: np.ndarray, 
                          player: BoardPiece, 
@@ -57,8 +57,8 @@ def iterate_states(board,player, depth,alpha, beta, maximizing_player = True, i=
             board_score = iterate_states(new_board,player, depth-1,alpha,beta,False,i)
             max_score = max(max_score,board_score)
             alpha = max(alpha,board_score)
-            if beta <= alpha:
-                break
+            alpha, beta, prune = check_prune(board_score, alpha, beta, maximizing_player)
+            if prune: break
         return max_score
     else:
         min_score = float('inf')
@@ -67,9 +67,8 @@ def iterate_states(board,player, depth,alpha, beta, maximizing_player = True, i=
             new_board = apply_player_action(new_board,move,opponent)
             board_score = iterate_states(new_board, player, depth-1,alpha,beta,True,i)
             min_score = min(min_score,board_score)
-            beta = min(beta,board_score)
-            if beta <= alpha:
-                    break
+            alpha, beta, prune = check_prune(board_score, alpha, beta, maximizing_player)
+            if prune: break
         return min_score
 
 def check_prune(board_score, alpha, beta, maximizing_player):
