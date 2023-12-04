@@ -22,7 +22,7 @@ def generate_move_minimax(board: np.ndarray,
     for move in valid_moves:
         new_board = board.copy()
         new_board = apply_player_action(new_board, move, player)
-        board_score = iterate_states(new_board,player, depth-1,alpha,beta, maximizing_player= False)
+        board_score = minimax(new_board,player, depth-1,alpha,beta, maximizing_player= False)
         if board_score > max_score:
             max_score = board_score
             best_move = move
@@ -31,7 +31,7 @@ def generate_move_minimax(board: np.ndarray,
             break
     return best_move, saved_state
 
-def iterate_states(board,player, depth,alpha, beta, maximizing_player = True):
+def minimax(board,player, depth,alpha, beta, maximizing_player = True):
 
     opponent = PLAYER2 if player == PLAYER1 else PLAYER1
 
@@ -52,7 +52,7 @@ def iterate_states(board,player, depth,alpha, beta, maximizing_player = True):
         for move in valid_moves:
             new_board = board.copy() # copy should be done inside the loop becasue ... don't move it out
             new_board = apply_player_action(new_board,move,player)
-            board_score = iterate_states(new_board,player, depth-1,alpha,beta,False)
+            board_score = minimax(new_board,player, depth-1,alpha,beta,False)
             max_score = max(max_score,board_score)
             alpha = max(alpha,board_score)
             alpha, beta, prune = check_prune(board_score, alpha, beta, maximizing_player)
@@ -63,7 +63,7 @@ def iterate_states(board,player, depth,alpha, beta, maximizing_player = True):
         for move in valid_moves:
             new_board = board.copy() # copy should be done inside the loop becasue ... don't move it out
             new_board = apply_player_action(new_board,move,opponent)
-            board_score = iterate_states(new_board, player, depth-1,alpha,beta,True)
+            board_score = minimax(new_board, player, depth-1,alpha,beta,True)
             min_score = min(min_score,board_score)
             alpha, beta, prune = check_prune(board_score, alpha, beta, maximizing_player)
             if prune: break

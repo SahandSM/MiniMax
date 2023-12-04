@@ -73,7 +73,7 @@ def test_iterate_states():
     alpha = float('-inf')
     beta = float('inf')
 
-    score = iterate_states(board,player, depth,alpha, beta, maximizing_player = True, i=np.array([0]))
+    score = minimax(board,player, depth,alpha, beta, maximizing_player = True, i=np.array([0]))
     print('\nOriginal\n'
         ,pretty_print_board(board))
     print('score is :',score)
