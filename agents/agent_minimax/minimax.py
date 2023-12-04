@@ -1,7 +1,7 @@
  
 import numpy as np
 
-from agents.game_utils import *
+from game_utils import *
 from agents.agent_minimax.heuristic import *
 from agents.common import *
 from typing import Optional, Callable

@@ -1,5 +1,5 @@
 from typing import Callable
-from agents.game_utils import GenMove
+from game_utils import GenMove
 from agents.agent_human_user import user_move
 from agents.agent_random import random_move
 from agents.agent_minimax import minimax_move
@@ -16,8 +16,8 @@ def human_vs_agent(
     init_2: Callable = lambda board, player: None,
 ):
     import time
-    from agents.game_utils import PLAYER1, PLAYER2, PLAYER1_PRINT, PLAYER2_PRINT, GameState
-    from agents.game_utils import initialize_game_state, pretty_print_board, apply_player_action, check_end_state
+    from game_utils import PLAYER1, PLAYER2, PLAYER1_PRINT, PLAYER2_PRINT, GameState
+    from game_utils import initialize_game_state, pretty_print_board, apply_player_action, check_end_state
 
     players = (PLAYER1, PLAYER2)
     for play_first in (1, -1):

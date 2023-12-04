@@ -2,7 +2,7 @@
 # checks by predicting and printing outcomes. 
 import numpy as np
 
-from agents.game_utils import *
+from game_utils import *
 from agents.agent_minimax.heuristic import *
 from typing import Optional, Callable
 
