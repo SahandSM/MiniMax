@@ -32,6 +32,7 @@ def generate_move_minimax(board: np.ndarray,
     return best_move, saved_state
 
 def iterate_states(board,player, depth,alpha, beta, maximizing_player = True):
+
     opponent = PLAYER2 if player == PLAYER1 else PLAYER1
 
     player_state = check_end_state(board,player)
@@ -68,7 +69,32 @@ def iterate_states(board,player, depth,alpha, beta, maximizing_player = True):
             if prune: break
         return min_score
 
-def check_prune(board_score, alpha, beta, maximizing_player):
+def check_prune(board_score: int, alpha: int, beta: int, maximizing_player: bool) -> Tuple[int, int, bool]:
+    """
+    Check if pruning is possible based on the current board score, alpha, beta, and the maximizing player.
+
+    Parameters
+    ----------
+    board_score : int
+        The score of the game board.
+    alpha : int
+        The alpha value for alpha-beta pruning.(the best alternative for miximizer)
+    beta : int
+        The beta value for alpha-beta pruning.
+    maximizing_player : bool
+        Indicates whether the current player is maximizing or minimizing. (the best alternative for minimizer)
+
+    Returns
+    -------
+    alpha: int
+        updated value of the alpha
+    
+    beta: int
+        updated value of the beta
+    prune: bool
+    Tuple[int, int, bool]
+        a boolean indicating whether pruning is possible.
+    """
     prune = False
     if maximizing_player:
         alpha = max(alpha,board_score)
@@ -78,7 +104,20 @@ def check_prune(board_score, alpha, beta, maximizing_player):
     if beta <= alpha: prune = True
     return alpha, beta, prune     
 
-def get_valid_moves(board: np.ndarray):
+def get_valid_moves(board: np.ndarray) -> List[int]:
+    """
+    Get valid moves for the current state of the game board.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+
+    Returns
+    -------
+    valid_moves: List[int]
+        A list of valid moves represented by column indices.
+    """
     is_open = board[-1, :] == 0
     possible_moves = np.arange(BOARD_COLS)
     valid_moves = possible_moves[is_open]
