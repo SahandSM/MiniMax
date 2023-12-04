@@ -129,6 +129,18 @@ def connected_four(board: np.ndarray, player: BoardPiece) -> bool:
     """
     Returns True if there are four adjacent pieces equal to `player` arranged
     in either a horizontal, vertical, or diagonal line. Returns False otherwise.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    player : BoardPiece
+        The peice for the player that made the last move.
+
+    Returns
+    -------
+    bool
+        True if there are four consecutive pieces of the specified player, False otherwise.
     """
     # Check horizontal (rows)
     for row in range(BOARD_ROWS):
@@ -161,6 +173,21 @@ def check_end_state(board: np.ndarray, player: BoardPiece) -> GameState:
     Returns the current game state for the current `player`, i.e. has their last
     action won (GameState.IS_WIN) or drawn (GameState.IS_DRAW) the game,
     or is play still on-going (GameState.STILL_PLAYING)?
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    player : BoardPiece
+        The player for whom the end state is checked.
+
+    Returns
+    -------
+    GameState
+        The current game state for the specified player:
+        - GameState.IS_WIN if the player has won.
+        - GameState.IS_DRAW if the game is a draw.
+        - GameState.STILL_PLAYING if the game is still ongoing.
     """
     if connected_four(board,player):
         return(GameState.IS_WIN)
