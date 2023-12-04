@@ -81,25 +81,6 @@ def check_prune(board_score, alpha, beta, maximizing_player):
     if beta <= alpha: prune = True
     return alpha, beta, prune     
 
-def evaluate(i):
-    score = [-1,3,5,-6,-4]
-    if i == [0]:
-        return score[i[0]]
-    if i == [1]:
-        return score[i[0]]
-    if i == [2]:
-        return score[i[0]]
-    if i == [3]:
-        return score[i[0]]
-    if i == [4]:
-        return score[i[0]]
-    if i == [5]:
-        return score[i[0]]
-    if i == [6]:
-        return score[i[0]]
-    if i == [7]:
-        return score[i[0]]
-
 def get_valid_moves(board: np.ndarray):
     is_open = board[-1, :] == 0
     possible_moves = np.arange(BOARD_COLS)
