@@ -59,8 +59,8 @@ def human_vs_agent(
 
 if __name__ == "__main__":
     second_player : GenMove = globals()[input('''choose agent to play:
-                1- user_move 
-                2- minimax_move
-                3- random_move
+                - user_move 
+                - minimax_move
+                - random_move
                 ''')]
     human_vs_agent(second_player)
