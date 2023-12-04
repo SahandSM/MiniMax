@@ -1,3 +1,9 @@
+# This file along with the minimax_old_print_test in the agent_minimax folder was used during
+# minimimax agent implementation to do print out and sanity checks step by step.
+# board inputs were changed and the evaluate function in the agent_minimax was manipulated to predict
+# the prints and do sanity checks.
+# minimax function was initially named iterate_states and then was renamed to minimax() 
+
 import numpy as np
 
 from agents.game_utils import *
