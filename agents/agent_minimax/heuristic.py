@@ -2,6 +2,7 @@ import numpy as np
 
 from agents.game_utils import *
 from typing import Optional, Callable
+from typing import List, Tuple
 
 def evaluate_board(board,player):
     all_pivots = get_pivots(board)
@@ -145,8 +146,21 @@ def evaluate_windows_opponent(windows,player):
     direction_score = [min(windows_score)]
     return direction_score
 
-def evaluate_single_window_player(window,player):
-    """Evaluates a single winodw considering the pattern of player/agent pieces.
+def evaluate_single_window_player(window: List[int], player: int) -> List[int]:
+    """
+    Evaluate the score of a single window for the player/agent.
+
+    Parameters
+    ----------
+    window : List[int]
+        A window of pieces on the game board.
+    player : int
+        The player for whom the window is evaluated.
+
+    Returns
+    -------
+    List[int]
+        A list containing the score of the window for the specified player.
     """
     window_score = [0]
     n_pieces = window.count(player)
@@ -156,7 +170,22 @@ def evaluate_single_window_player(window,player):
     elif n_pieces == 2 and n_zeros == 2: window_score = [2]
     return window_score
 
-def evaluate_single_window_opponent(window,player):
+def evaluate_single_window_opponent(window: List[int], player: int) -> List[int]:
+    """
+    Evaluate the score of a single window for the opponent player.
+
+    Parameters
+    ----------
+    window : List[int]
+        A window of pieces on the game board.
+    player : int
+        The player for whom the window is evaluated.
+
+    Returns
+    -------
+    List[int]
+        A list containing the score of the window for the opponent player.
+    """
     window_score = [0]
     n_pieces = window.count(player)
     n_zeros = window.count(0)
@@ -165,8 +194,25 @@ def evaluate_single_window_opponent(window,player):
     elif n_pieces == 0 and n_zeros == 2: window_score = [-2]
     return window_score
 
-def get_pivots(board):
-    #remember to mask tpivots with the is_open_rows
+def get_pivots(board: np.ndarray) -> List[Tuple[int, int]]:
+    """
+    Get the coordinates of all available pivot positions in the board.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+
+    Returns
+    -------
+    List[Tuple[int, int]]
+        A list of (row, column) tuples representing the coordinates of available pivot positions.
+
+    Notes
+    -----
+    The function considers only the top rows up to the maximum height calculated
+    using the get_max_height function.
+    """
     pivot_board = board.copy()
 
     max_height = get_max_height(pivot_board)
@@ -176,7 +222,20 @@ def get_pivots(board):
     all_pivots = list(zip(*np.where(max_heigh_pivot == 0)))
     return all_pivots
 
-def get_max_height(board):
+def get_max_height(board: np.ndarray) -> int:
+    """
+    Get the maximum height among the free columns in the board.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+
+    Returns
+    -------
+    int
+        The maximum height among the free columns.
+    """
     col_heights = [np.count_nonzero(board[:,i]) for i in range(BOARD_COLS)]
     col_heights = np.array(col_heights)
     is_open = is_open_row(board)
