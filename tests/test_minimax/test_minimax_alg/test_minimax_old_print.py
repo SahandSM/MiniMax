@@ -6,7 +6,7 @@
 
 import numpy as np
 
-from agents.game_utils import *
+from game_utils import *
 from agents.common import *
 from agents.agent_minimax.minimax import *
 

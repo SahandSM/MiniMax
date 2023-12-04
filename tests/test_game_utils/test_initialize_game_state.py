@@ -1,7 +1,7 @@
 
 import numpy as np
 
-from agents.game_utils import *
+from game_utils import *
 
 
 def test_board_shape():
