@@ -1,3 +1,4 @@
+# agents.game_utils was changed to game_utils since the file moved to main direcotry.
 from typing import Callable
 from game_utils import GenMove
 from agents.agent_human_user import user_move
