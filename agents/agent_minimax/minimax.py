@@ -41,10 +41,6 @@ def iterate_states(board,player, depth,alpha, beta, maximizing_player = True, i=
     elif player_state == GameState.IS_DRAW: return 0
     elif depth == 0: # depth =0 means there has been x=depth moves carried out
         board_score = evaluate_board(board,player)
-        # print(f'\ndepth 0 reached for {i}:',
-        #       f'\nboard score is: {board_score}\n',
-        #       pretty_print_board(board))
-        # i += 1
         return board_score
 
     valid_moves = get_valid_moves(board)
