@@ -57,9 +57,21 @@ def evaluate_row(board,pivot_point,player):
     row_score_opponent = evaluate_windows_opponent(windows_row,player)
     return row_score_player,row_score_opponent
 
-def get_pivot_row(board,pivot):
+def get_pivot_row(board: np.ndarray, pivot: Tuple[int, int]) -> Tuple[np.ndarray, int]:
     """
-    return the row contraining the pivot and the position of the pivot in the row.
+    Get the row window containing the pivot and position of the pivot in the window.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    pivot : Tuple[int, int]
+        A tuple representing the pivot coordinates (row, column) in the board.
+
+    Returns
+    -------
+    Tuple[numpy.ndarray, int]
+        A tuple containing the row window and the position of the pivot.
     """
     row_window = board[pivot[0]]
     position = pivot[1]
@@ -72,7 +84,22 @@ def evaluate_col(board,pivot_point,player):
     col_score_opponent = evaluate_windows_opponent(windows_col,player)
     return col_score_player,col_score_opponent
 
-def get_pivot_col(board,pivot):
+def get_pivot_col(board: np.ndarray, pivot: Tuple[int, int]) -> Tuple[np.ndarray, int]:
+    """
+    Get the column window containing the poivot and position of the pivot in the window.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    pivot : Tuple[int, int]
+        A tuple representing the pivot coordinates (row, column) in the board.
+
+    Returns
+    -------
+    Tuple[numpy.ndarray, int]
+        A tuple containing the column window and the position of the pivot.
+    """
     col_window = board[:,pivot[1]]
     position = pivot[0]
     return col_window,position
@@ -84,7 +111,22 @@ def evaluate_diag(board,pivot_point,player):
     diag_score_opponent = evaluate_windows_opponent(windows_diag,player)
     return diag_score_player,diag_score_opponent
 
-def get_pivot_diag(board,pivot):
+def get_pivot_diag(board: np.ndarray, pivot: Tuple[int, int]) -> Tuple[np.ndarray, int]:
+    """
+    Get the diagonal window containing the pivot point and position of the pivot point on the window.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    pivot : Tuple[int, int]
+        A tuple representing the pivot coordinates (row, column) in the board.
+
+    Returns
+    -------
+    Tuple[numpy.ndarray, int]
+        A tuple containing the diagonal window and the position of the pivot.
+    """
     diag_window = np.diag(board,pivot[1]-pivot[0])
     position = min(pivot)
     return diag_window,position
@@ -96,7 +138,22 @@ def evaluate_opp_diag(board,pivot_point,player):
     opp_diag_score_opponent = evaluate_windows_opponent(windows_opp_diag,player)
     return opp_diag_score_player,opp_diag_score_opponent
 
-def get_pivot_opp_diag(board,pivot):
+def get_pivot_opp_diag(board: np.ndarray, pivot: Tuple[int, int]) -> Tuple[np.ndarray, int]:
+    """
+    Get the opposite diagonal window containing the pivot point and position of the pivot point in the window.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    pivot : Tuple[int, int]
+        A tuple representing the pivot coordinates (row, column) in the board.
+
+    Returns
+    -------
+    Tuple[numpy.ndarray, int]
+        A tuple containing the opposite diagonal window and the position of the pivot point in the window.
+    """
     borad_flipped = np.fliplr(board)
     pivot = pivot[0],6-pivot[1]
     opp_daig_window = np.diag(borad_flipped,pivot[1]-pivot[0])
