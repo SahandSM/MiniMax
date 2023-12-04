@@ -24,6 +24,8 @@ def aggregate_scores(all_pivot_scores_player, all_pivot_scores_opponent):
     
 
 def evlaute_at_all_pivots(board,all_pivots,player):
+    '''returns an array of length 4 for each player. each element in the array refers to the evaluation at one axis.
+    '''
     all_pivot_scores_player = []
     all_pivot_scores_opponent = []
 
