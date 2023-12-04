@@ -37,9 +37,27 @@ def evlaute_at_all_pivots(board,all_pivots,player):
     return all_pivot_scores_player, all_pivot_scores_opponent
 
 
-def evaluate_at_pivot(board,pivot,player):
-    '''returns an array of length 4 for each player. each element in the array refers to the evaluation at one axis.
-    '''
+def evaluate_at_pivot(board: np.ndarray, pivot: Tuple[int, int], player: int) -> Tuple[List[int], List[int]]:
+    """
+    Evaluate the scores for the player and opponent at the specified pivot on all axes.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    pivot : Tuple[int, int]
+        A tuple representing the pivot coordinates (row, column) in the board.
+    player : int
+        The player for whom the scores are evaluated.
+
+    Returns
+    -------
+    pivot_score_player: List[int]
+        an array of length 4 for corresponding to evaluation for the agent's pieces at each axis.
+    pivot_score_opponent: list[int]
+        an array of length 4 for corresponding to evaluation for the agent's pieces at each axis.
+    Tuple[List[int], List[int]]
+    """
     row_score_player, row_score_opponent = evaluate_row(board,pivot,player)
     col_score_player, col_score_opponent = evaluate_col(board,pivot,player)
     diag_score_player, diag_score_opponent  = evaluate_diag(board,pivot,player)
@@ -50,7 +68,24 @@ def evaluate_at_pivot(board,pivot,player):
     
     return pivot_score_player, pivot_score_opponent
 
-def evaluate_row(board,pivot_point,player):
+def evaluate_row(board: np.ndarray, pivot_point: Tuple[int, int], player: int) -> Tuple[List[int], List[int]]:
+    """
+    Evaluates scores of the windows of length 4 containing the pivot and constituting the row containing the pivot.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    pivot_point : Tuple[int, int]
+        A tuple representing the pivot coordinates (row, column) in the board.
+    player : int
+        The maximizing player.
+
+    Returns
+    -------
+    Tuple[List[int], List[int]]
+        A tuple containing the player's max score and opponent's max score on the row windows of the pivot point.
+    """
     array,position = get_pivot_row(board,pivot_point)
     windows_row = extract_windows(array,position)
     row_score_player = evaluate_windows_player(windows_row,player)
@@ -77,7 +112,24 @@ def get_pivot_row(board: np.ndarray, pivot: Tuple[int, int]) -> Tuple[np.ndarray
     position = pivot[1]
     return row_window,position
 
-def evaluate_col(board,pivot_point,player):
+def evaluate_col(board: np.ndarray, pivot_point: Tuple[int, int], player: int) -> Tuple[List[int], List[int]]:
+    """
+    Evaluates scores of the windows of length 4 containing the pivot and constituting the column containing the pivot.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    pivot_point : Tuple[int, int]
+        A tuple representing the pivot coordinates (row, column) in the board.
+    player : int
+        The maximizing player.
+
+    Returns
+    -------
+    Tuple[List[int], List[int]]
+        A tuple containing the player's max score and opponent's max score on the column windows of the pivot point.
+    """
     array,position = get_pivot_col(board,pivot_point)
     windows_col = extract_windows(array,position)
     col_score_player = evaluate_windows_player(windows_col,player)
@@ -104,7 +156,24 @@ def get_pivot_col(board: np.ndarray, pivot: Tuple[int, int]) -> Tuple[np.ndarray
     position = pivot[0]
     return col_window,position
 
-def evaluate_diag(board,pivot_point,player):
+def evaluate_diag(board: np.ndarray, pivot_point: Tuple[int, int], player: int) -> Tuple[List[int], List[int]]:
+    """
+    Evaluates scores of the windows of length 4 containing the pivot and constituting the diagonal containing the pivot.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    pivot_point : Tuple[int, int]
+        A tuple representing the pivot coordinates (row, column) in the board.
+    player : int
+        The maximizing player.
+
+    Returns
+    -------
+    Tuple[List[int], List[int]]
+        A tuple containing the player's max score and opponent's max score on the diagonal windows of the pivot point.
+    """
     array,position = get_pivot_diag(board,pivot_point)
     windows_diag = extract_windows(array,position)
     diag_score_player = evaluate_windows_player(windows_diag,player)
@@ -131,7 +200,24 @@ def get_pivot_diag(board: np.ndarray, pivot: Tuple[int, int]) -> Tuple[np.ndarra
     position = min(pivot)
     return diag_window,position
 
-def evaluate_opp_diag(board,pivot_point,player):
+def evaluate_opp_diag(board: np.ndarray, pivot_point: Tuple[int, int], player: int) -> Tuple[List[int], List[int]]:
+    """
+    Evaluates scores of the windows of length 4 containing the pivot and constituting the opposite diagonal containing the pivot.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    pivot_point : Tuple[int, int]
+        A tuple representing the pivot coordinates (row, column) in the board.
+    player : int
+        The maximizing player.
+
+    Returns
+    -------
+    Tuple[List[int], List[int]]
+        A tuple containing the player's max score and opponent's max score on the opposite diagonal windows of the pivot point.
+    """
     array,position = get_pivot_opp_diag(board,pivot_point)
     windows_opp_diag = extract_windows(array,position)
     opp_diag_score_player = evaluate_windows_player(windows_opp_diag,player)
