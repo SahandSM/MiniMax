@@ -1,3 +1,4 @@
+# this file was used to do print outs and sanity check for the heuristic. it is not in use at this point.
 import numpy as np
 
 from agents.agent_minimax.heuristic import *
