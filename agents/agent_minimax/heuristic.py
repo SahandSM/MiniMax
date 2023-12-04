@@ -174,14 +174,6 @@ def get_pivots(board):
     max_heigh_pivot = pivot_board[:max_height+1,:]
 
     all_pivots = list(zip(*np.where(max_heigh_pivot == 0)))
-    # free_rows = get_free_rows(board)
-    # col_index = range(BOARD_COLS)
-    # all_pivots = [(row,column) for row, column in zip(free_rows,col_index)]
-    # all_pivots = np.array(all_pivots)
-
-    # is_open = is_open_row(board)
-    # all_pivots = all_pivots[is_open]
-
     return all_pivots
 
 def get_max_height(board):
@@ -191,10 +183,6 @@ def get_max_height(board):
     free_col_heights = col_heights[is_open]
     max_height = max(free_col_heights)
     return max_height
-
-def get_free_rows(board):
-    free_rows = [np.count_nonzero(board[:,i]) for i in range(BOARD_COLS)]
-    return free_rows
 
 def is_open_row(board: np.ndarray) -> bool:
     """
