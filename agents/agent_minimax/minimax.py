@@ -6,11 +6,30 @@ from agents.agent_minimax.heuristic import *
 from agents.common import *
 from typing import Optional, Callable
 
-DEPTH = 4 # I suggest depth 3 due to the desing of heuristics.
+DEPTH = 4
 
 def generate_move_minimax(board: np.ndarray, 
                          player: BoardPiece, 
                          saved_state: Optional[SavedState]) -> tuple[PlayerAction, Optional[SavedState]]:
+    """
+    Generate the best move using the minimax algorithm.
+
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    player : BoardPiece
+        the BoardPiece that the agent is playing with.
+    saved_state : Optional[SavedState]
+        An optional saved state.
+
+    Returns
+    -------
+    best_move: PlayerAction
+        the action that agent will take.
+    saved_state: Optional[SavedState]
+
+    """
     depth = DEPTH
     best_move = None
     max_score = float('-inf')
@@ -31,8 +50,37 @@ def generate_move_minimax(board: np.ndarray,
             break
     return best_move, saved_state
 
-def minimax(board,player, depth,alpha, beta, maximizing_player = True):
+def minimax(
+    board: np.ndarray, 
+    player: int, 
+    depth: int, 
+    alpha: float, 
+    beta: float, 
+    maximizing_player: bool = True
+) -> float:
+    """
+    Recursive function to evaluate possible states in the minimax algorithm.
 
+    Parameters
+    ----------
+    board : numpy.ndarray
+        2D array representing the game board.
+    player : int
+        Specifies agent's piece
+    depth : int
+        The remaining depth for recursive evaluation.
+    alpha : float
+        Alpha value for alpha-beta pruning.
+    beta : float
+        Beta value for alpha-beta pruning.
+    maximizing_player : bool, optional
+        Indicates whether the current player is maximizing or minimizing.
+
+    Returns
+    -------
+    board_score: float
+        The score for the current state.
+    """
     opponent = PLAYER2 if player == PLAYER1 else PLAYER1
 
     player_state = check_end_state(board,player)
