@@ -130,7 +130,22 @@ def extract_windows(array: list,pivot_position: int) -> list:
         windows.append(window)
     return windows
 
-def evaluate_windows_player(windows,player):
+def evaluate_windows_player(windows: List[List[int]], player: int) -> List[int]:
+    """
+    Evaluate the score of multiple windows for the player.
+
+    Parameters
+    ----------
+    windows : List[List[int]]
+        A list of windows, where each window is a list of pieces on the game board.
+    player : int
+        The player for whom the windows are evaluated.
+
+    Returns
+    -------
+    List[int]
+        A list containing the maximum score among all evaluated windows for the specified player.
+    """
     windows_score = [0]
     for window in windows:
         window_score = evaluate_single_window_player(window,player)
@@ -138,7 +153,22 @@ def evaluate_windows_player(windows,player):
     direction_score = [max(windows_score)]
     return direction_score
 
-def evaluate_windows_opponent(windows,player):
+def evaluate_windows_opponent(windows: List[List[int]], player: int) -> List[int]:
+    """
+    Evaluate the score of multiple windows for the opponent player.
+
+    Parameters
+    ----------
+    windows : List[List[int]]
+        A list of windows, where each window is a list of pieces on the game board.
+    player : int
+        The opponent player for whom the windows are evaluated.
+
+    Returns
+    -------
+    List[int]
+        A list containing the minimum score among all evaluated windows for the opponent player.
+    """
     windows_score = [0]
     for window in windows:
         window_score = evaluate_single_window_opponent(window,player)
