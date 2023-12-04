@@ -71,8 +71,17 @@ def iterate_states(board,player, depth,alpha, beta, maximizing_player = True, i=
             if beta <= alpha:
                     break
         return min_score
+
+def check_prune(board_score, alpha, beta, maximizing_player):
+    prune = False
+    if maximizing_player:
+        alpha = max(alpha,board_score)
+    else:
+        beta = min(beta,board_score)
     
-    
+    if beta <= alpha: prune = True
+    return alpha, beta, prune     
+
 def evaluate(i):
     score = [-1,3,5,-6,-4]
     if i == [0]:
