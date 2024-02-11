@@ -6,7 +6,7 @@ from agents.agent_minimax.heuristic import *
 from agents.common import *
 from typing import Optional, Callable
 
-DEPTH = 4
+DEPTH = 7
 
 def generate_move_minimax(board: np.ndarray, 
                          player: BoardPiece, 
